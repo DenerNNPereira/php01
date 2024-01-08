@@ -215,9 +215,164 @@ Ex: number_format(3258.754, 2, “,”, “.”) = 3.258. 75.
 
 Obs: Ainda existem os métodos ceil() e floor() para arredondamentos para cima e para baixo, respectivamente. A função round() vai usar as regras de arredondamento.
 
-<p></p>
+<p>operadores em php funcionam da mesma forma que em outras linguagens. as variáveis são definidas sempre com cifrão $ no início. para que a operação seja mostrada pode usar uma variável para guardar o resultado, no exemplo $s, ou a operação pode ser adicionada no comando echo, porém entre parênteses () e fora das aspas duplas "" separados por ponto . ao invés de vírgula , exemplo abaixo</p>
+<p>a sequência de realzização das operações em uma expressão segue as regras da matemática, onde o que está entre parênteses () é efetuado primeiro, sem seguida da esquerda pra direita na ordem em que aparecem da esquerda para direita multiplicação * divisão / e módulo % e por último na ordem em que aparecem da esquerda para direita adição + e subtração -.</p>
+<p>pode passar os valores para os cálculos através da url no navegador, adicinando, após o nome do arquivo seguido da extensão no caso php onde um parâmetro na url recebe com sinal de igual = o valor a ser usado seguindo do sinal de e comercial & caso tenha mais variáveis ou parâmetros a serem usadas e a variável seguinte da mesma forma da primeira ficando: https://localhost/pastadoarquivo/nomedoarquivo.php?a=3$b=2 então no código do arquivo php uma variável irá receber os valores passados pela url através do get, onde uma variável $n1 recebe = através da url no navegador &_GET o valor de a ["a"] entre aspas duplas e colchetes[] finalizado por ponto e vírgula, e a segunda variável ou variáveis seguintes repetem esse comando: $n1 = &_GET["a"]; e $n2 = &_GET["b"]; precisar ter a diferença de maiúsculas e minúsculas.</p>
+    <p>usando os parâmetros x e y na url: https://localhost/pastadoarquivo/nomedoarquivo.php?x=5$y=-3&a=3$b=2 a abreviação abs calcula o valor absoluto de um valor insrido em uma variável ou parâmetro na url os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla abs: abs($v2);. usando pow faz uma potencialização, elevação a potência, x elevado a y os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla pow: pow($v2);. usando sqrt faz conta da raiz quadrada, os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla sqrt: sqrt($v2);. usando round faz o arredondamento, os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla round: round($v2); round segue as regras comuns de arredondamento e pode ser substituído por ceil que sempre arredonda para cima ou floor que sempre arredonda para baixo. usando intval pega a parte inteira truncagem de um número real, os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla intval: intval($v2);. usando number_format formata um número em moeda adiciondo casas decimais após a vírgula de um número real adicionando uma vírgula após o nome da variável entre parênteses após uma segunda vírgula entre aspas duplas fica qual sinal vai separar as casas decimais e uma terceira indica qual separa o milhar, os valores ou as variáveis devem ser adicionadas entre parênteses () logo após a sigla number_format: number_format($v2,2,",",".");. </p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF=8"/>
+        <link rel="stylesheet" href="estilos/style.css">
+        <title></titel>
+</head>
+<body>
+    <?php
+        <h1>operações com operadores aritméticos</h1>
+        $n1 = 3;
+        $n2 = 2;
+        $s = $n1 + $n2;
+        $m = $n1 + $n2 /2;
+        $m2 = ($n1 + $n2) / 2;
+        echo "A soma de $n1 mais $n2 é: $s";
+        echo "<br/>A soma é: ". ($n1 + $n2);
+        echo "<br/>A subtração é: ". ($n1 - $n2);
+        echo "<br/>A divisão é: ". ($n1 / $n2);
+        echo "<br/>A multiplicação é: ". ($n1 * $n2);
+        echo "<br/>O módulo (resto da divisão) é: ". ($n1 % $n2);
+        echo "<br/>A média errada é $m";
+        echo "<br/>A média certa é: $m2";
+
+        <h1>funções aritméticas</h1>
+        $v1 = &_GET["x"];
+        $v2 = &_GET["y"];
+        echo "<h2>Valores recebidos: $v1 e $v2</h2>";
+        echo "O valor absoluto de $v2 e " . abs($v2);
+        echo "<br/>O valor de $v1<sup>$v2</sup> e " . pow($v1, $v2);
+        echo "<br/>A raiz quadrada de $v1 e " . sqrt($v1);
+        echo "<br/>O arredondamento de $v1 e " . round($v1);
+        echo "<br/>A parte inteira de $v1 e " . intval($v1);
+        echo "<br/>O valor em moeda de $v1 e R$ " . number_format($v1, 2, ",", ".";
+    ?>
+</body>
+</html>
 
 -----------------------
+<h1>aula 06. operadores de atribuição.</h1>
+<p>Uma atribuição acontece quando queremos colocar algum valor dentro de uma variável, seja ele um número ou string estática, o resultado de uma expressão, o retorno de uma função ou o conteúdo de outra variável.
+
+== Operadores de Atribuição do PHP
+
+Os operadores de atribuição do PHP são += -= *= /= %= e .=
+
+Vejamos alguns exemplos:
+
+$c = $c + 5; $c += 5;
+
+$c = $c – $a; $c -= $a;
+
+$c = $c + 1; $c += 1;
+
+Na última linha da tabela acima, você verifica a adição de apenas uma unidade na variável. Nesses casos, podemos usar os operadores de incremento.
+
+== Operadores de Incremento ou Decremento
+
+$c = $c + 1; $c += 1; $c++;
+
+Qualquer uma das formas acima é válida. De maneira similar, temos:
+
+$c = $c – 1; $c -= 1; $c–;
+
+A forma de utilizar o operador de incremento/ decremento faz toda diferença se ele aparece antes ou depois da variável. Assim:
+
+$c ++ $c–
+
+vão apresentar resultados diferentes de acordo com a situação. Durante a aula, vai ser explicado melhor como utilizar pré-incremento, pós-incremento, pré-decremento e pós-decremento em PHP.
+
+ == Comentários em PHP
+
+Existem três tipos de comentários em PHP. Os comentários inline // e # transformam tudo o que está após o(s) símbolo(s) será considerado comentário.
+
+Existe também o comentário multiline, que vai criar comentários que ocupem várias linhas:
+
+<?php
+
+      /* Esse comentário vai ocupar várias linhas do seu código e todas serão ignoradas */
+
+     $a += 1; // Esse é um comentário de uma linha
+
+     $b ++; # Esse aqui também é
+
+?>
+
+== Variáveis Referenciadas
+
+Colocar um caractere & na frente de uma variável vai criar um ponteiro em PHP. Ela não será uma variável de fato, mas será uma referência à variável original. Considere o código:
+
+<?php
+
+     $x = 3;
+
+     $y = $x;
+
+     $z = &$x;
+
+?>
+
+A variável $x vai receber 3. A variável $y vai receber o valor que está dentro da variável $x. A variável $z vai ser uma ligação com a variável $x. Mais tarde, qualquer modificação em $y não vai alterar o valor de $x. Porém, se mudarmos o valor de $z, o valor de $x será afetado, já que existe uma relação entre as duas.
+
+== Variáveis de Variáveis (variáveis variantes)
+
+Colocar um segundo $ na frente de uma variável também possui um efeito bem peculiar. Ele vai criar uma variável dinamicamente, dependendo do conteúdo da variável original. Essas são as variáveis de variáveis em PHP.
+
+<?php
+
+    $nome = “gustavo”;
+
+    $$nome = “professor”;
+
+?>
+
+Com essas linhas, teremos uma variável $nome, como o conteúdo “gustavo” e a linha de baixo vai criar uma variável $gustavo, com o conteúdo “professor”.
+
+Veja a aula em vídeo e tire todas as suas dúvidas sobre esses conteúdos sobre atribuição de valores em PHP.</p>
+
+<p>atribuição é pegar um valor e adicionar a uma variável.</p>
+<p>operadores quando adicionam ao valor da variável podem receber shorthand para encurtar a expressão exemplo a variável $a recebe o total de $a mais o valor da variável $b: $a = $a + $b; pode ser reduzido a: $a += $b; onde += representa $a mais o que tem na variável $a então adiciona o total de $b, esse tipo de shorthand serve para todas os operadores de de atribuição inclusive concatenação sendo esses adição +; subtração -; multiplicação *; divisão /; módulo %; concatenação .. os valores de atribuição para as variáveis podem ser passadas pela url no navegador e pegada usando $_GET[""] onde a atribuição entre as aspas duplas "" é direcionada a uma variável.</p>
+<p></p>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF=8"/>
+        <link rel="stylesheet" href="estilos/style.css">
+        <title></titel>
+</head>
+<body>
+    <?php
+        <h1>operadores de atribuição</h1>
+        $a = 1;
+        $b = 2;
+        $c = $a + $b;
+        $c = $c + 5; ou $c += 5;
+        $b = $b + $a; ou $b += $a;
+        $a = $a + 1; ou $a += 1; ou $a++;
+
+        adição          $a = $a + $b; ou $a += $b;
+        subtração       $a = $a - $b; ou $a -= $b;
+        multiplicação   $a = $a * $b; ou $a *= $b;
+        divisão         $a = $a / $b; ou $a /= $b;
+        módulo          $a = $a % $b; ou $a %= $b;
+        concatenação    $a = $a . $b; ou $a .= $b;
+
+        $preco = $_GET["p"];
+        echo "O preço do produto é R$ $preco";
+        $preco = $preco + ($preco*10/100);
+        $preco += ($preco*10/100);
+        echo "<br/>O preço atual é $preco";
+    ?>
+</body>
+</html>
 
 -----------------------
 </body>
