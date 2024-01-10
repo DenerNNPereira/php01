@@ -339,7 +339,11 @@ Veja a aula em vídeo e tire todas as suas dúvidas sobre esses conteúdos sobre
 
 <p>atribuição é pegar um valor e adicionar a uma variável.</p>
 <p>operadores quando adicionam ao valor da variável podem receber shorthand para encurtar a expressão exemplo a variável $a recebe o total de $a mais o valor da variável $b: $a = $a + $b; pode ser reduzido a: $a += $b; onde += representa $a mais o que tem na variável $a então adiciona o total de $b, esse tipo de shorthand serve para todas os operadores de de atribuição inclusive concatenação sendo esses adição +; subtração -; multiplicação *; divisão /; módulo %; concatenação .. os valores de atribuição para as variáveis podem ser passadas pela url no navegador e pegada usando $_GET[""] onde a atribuição entre as aspas duplas "" é direcionada a uma variável.</p>
-<p></p>
+<p>usando a concateação com sinal de ponto final . em um comando echo pode usar as funções aritméticas, por exemplo number_format.</p>
+<p>operadores de incremento, 4 tipos: pré-incremento ++$a; pós-incremento $a++; pré decremento --$a; pós decremento $a++. onde pré sempre vai retirar ou adicionar antes de mostrar a variável se for o caso, e pós vai retirar ou adicionar após mostrar a variável onde uma linha seguinte mostraria o valor atualizado.</p>
+<p>tipos de comentários 3 tipos. em linha iniciado por barra barra / / ou serquilha jogo da velha # tudp que estiver depois de algum desses símbolos será considerado um comentário porém finaliza automaticamente ao trocar de linha. limitando multilinha com barra asterísitco /* e finalizando com asterísitco barra */ onde tudo que estiver entre esses dois conjuntos de símbolos independente da quantidade de linhas será considerado comentário. ter comentários no código ajuda a identificar detalhes importantes no código.</p>
+<p>Referencias entre variáveis. para referênciar uma variável a outra uma variável recebe o valor da anterior antecedido por e comercial &: $b = &$a; onde o que for alterado em na primeira acontecerá na segunda variável.</p>
+<p>variáveis de variáveis. ao atribuir um valor a uma varível, se usado 2 cifrões antes do nome dessa variável fará com que esta receba o nome da variável anterior; $site = "cursoemvideo"; $$site = "cursophp";</p>
 
 <!DOCTYPE html>
 <html>
@@ -370,11 +374,166 @@ Veja a aula em vídeo e tire todas as suas dúvidas sobre esses conteúdos sobre
         $preco = $preco + ($preco*10/100);
         $preco += ($preco*10/100);
         echo "<br/>O preço atual é $preco";
+
+        // concatenação com funções aritméticas
+        $preco = $_GET["p"];
+        echo "O preço do produto é R$ R$ " . number_format($preco, 2);
+        $preco = $preco + ($preco*10/100);
+        $preco += ($preco*10/100);
+        echo "<br/>O preço atual é R$ ". number_format($preco, 2);
+
+        // mostar o ano atual pego via url e o anterior com incremento ou decremento.
+        $atual = $_GET["aa"];
+        echo "O ano atual é $atual e o ano anterior é " . --$atual;
+
+        // variáveis referenciadas
+        $a = 3;
+        $b = $a;
+        $b += 5;
+        echo $a; // mostra o valor 3
+        echo $b; // mostra o valor 8
+
+        $a = 3;
+        $b = &$a;
+        $b += 5;
+        echo $a; // mostra o valor 8
+        echo $b; // mostra o valor 8
+
+        // variáveis de variáveis
+        $site = "cursoemvideo";
+        $$site = "cursophp";
+        echo $site; // mostra cursoemvideo
+        echo $cursoemvideo; // mostra cursophp. o conteúdo da variável $site virou uma variável.
     ?>
 </body>
 </html>
 
 -----------------------
+<h1>aula 07. operadores relacionais.</h1>
+<p>comparações com operadores relaciionais. símbolos: maior > ; menor < ; maior ou igual >= ; menor ou igual <= ; diferente <> ou != ; igual == ; idêntico === testa se é igual e do mesmo tipo.</p>
+<p>operador unário representado por um ponto de interrogação ? seguido de dois pontos : onde há uma expressão, por exemplo se maior ou menor, interrogação o que seria verdadeiro dois pontos e o que seria falso, que pode ser atribuído a uma variável: $variávelmaior = expressão?verdadeiro:falso ou $variávelmaior = $a>$b?$a:$b que é se $a for maior que $b é verdadeiro então $variávelmaior recebe $a, se $a for menor do que $b então é falso então  $variávelmaior recebe $b. essa expressão é igual a se então e senão.</p>
+<p>também pode ser usado com strings texto ou letras ou uma comparação ter um resultado de soma, exemplo: se $a maior que $b então $r resultado recebe $a+$b senão $a menor que $b então $r recebe $a-$b ficando: $r = $a>$b ? $a+$b : $a-$b;. no caso de usar uma string caso uma comparação seja verdadeira a variável de resultado receberá um texto ou uma palavra, uma string, se o resultado for falso a variável de resultado receberá outra palavra ou texto ou string diferente ficando: $sit = $m>7 ? "aprovado" : "recuperação"; </p>
+<p>o operador unário faz apenas comparações simples, de apenas 1 tipo, se verdadeiro ou falso, básicas. a expressão unária pode ser concatenada no comando echo de mostrar na tela, porém deve estar toda entre parênteses ().</p>
+<p>operadores lógicos. usando o operador e and ou && uma expressão só será verdadeira de todos elementos da expressão forem verdadeiros, se este e aquele for verdadeiro é verdadeiro. no operador or ou || uma expressão será verdadeira se qualquer um dos elementos forem verdadeiro, se este ou aquele for verdadeiro será verdadeiro. no operador xou xor ou exclusivo pode ser verdadeiro ou falso mas não os dois, só será verdadeiro se apenas um elemento for verdadeiro, se todos os elementos forem verdadeiro ou falso será falso. o operador não ! not inverte o elemento, se verdadeiro será falso, se falso é verdadeiro. operadores lógicos podem ser usado na expressão de operadores unários, onde a expressão a ser comparada estará entre parênteses () usando os símbolos se operadores lógicos.</p>
+
+
+<!DOCTYPE html>
+<html lang="pt=br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operadores relacionais</title>
+</head>
+<body>
+    <?php
+        maior $a > $b
+        menor $a < $b
+        maior ou igual $a >= $b
+        menor ou igual $a <= $b
+        diferente $a <> $b ou $a != $b
+        igual $a == $b
+        idêntico $a === $b
+
+        $r = $a>$b ? $a+$b : $a-$b;
+        $sit = $m>7 ? "aprovado" : "recuperação";
+
+        $n1 = $_GET["a"];
+        $n2 = $_GET["ab"];
+        $tipo = $_GET["op"];
+        echo "Os valores são $n1 e $n2 <br/>";
+        $r = ($tipo == "s") ? $n1+$n2 : $n1*$n2;
+        echo "O rsultado é $r";
+
+        // uso idêntico
+        $a = 3;
+        $b = "3";
+        $r = ($a == $b) ? "SIM" : "NÃo";
+        echo "As variáveis são iguais? $r"; // mostrará SIM
+        $r = ($a === $b) ? "SIM" : "NÃo";
+        echo "As variáveis são idênticas? $r"; // mostrará NÃO
+
+        $nota1 = $_GET["n1"];
+        $nota2 = $_GET["n2"];
+        $m = ($nota1 + $nota2)/2;
+        echo "A média é $m <br/>";
+        // opção 1
+        $sit = ($m<6) ? "Reprovado" : "Aprovado";
+        echo "O aluno foi $sit";
+        // opção 2
+        echo "O aluno foi " . (($m<6) ? "Reprovado" : "Aprovado");
+
+        // operadorse lógicos
+        $ano = $_GET["an"];
+        $idade = 2024 - $ano;
+        echo "Nasceu em $ano e a idade é $idade";
+        $tipo = ($idade >= 18 && $idade < 65) ? "Obrigatório" : "Não obrigatório";
+        echo "Seu voto é $tipo";
+
+    ?>
+</body>
+</html>
+
+-----------------------
+<h1>aula 08. integração html5 + php.</h1>
+<p>Ligação formulário HTML PHP, integração HTML5 com PHP via formulário.
+
+Nessa oitava aula do Curso de PHP, vamos aprender como aumentar a interatividade dos nossos scripts PHP com formulários HTML5.
+
+Formulários em HTML5
+
+Se você não sabe como lidar com formulários HTML5, não se esqueça de assistir antes as duas aulas que tratam desse assunto no Curso em Vídeo Grátis de HTML5.
+
+Formulários HTML5 – Parte 1: http://youtu.be/metoFY-x_yg
+
+Formulários HTML5 – Parte 2: http://youtu.be/lwuDJN9Udfc
+
+Formulários HTML5 e JavaScript: http://youtu.be/YY5hqlcbfoI
+
+Lá você vai aprender como escrever códigos específicos para a criação de formulários completos e vai estudar todos os novos controles de formulários adicionados ao HTML5, como o range, color, number, date, etc.
+
+Por exemplo, vamos considerar um formulário que use o método GET e envie um valor V para o arquivo DADOS.PHP:
+
+    Obs: O método GET envia dados de um formulário diretamente pela URL.
+
+Interligando o formulário HTML com o script PHP
+
+Para interligar o formulário, vamos usar a cláusula $_GET
+
+<?php
+
+     $valor = $_GET[“v”];
+
+     echo “Digitou $valor”;
+
+?>
+
+Obs: O $_GET sempre vai utilizar todas as letras maiúsculas. Obs: Se por acaso seu formulário utilizar o método post, você vai precisar usar $_POST.
+
+Interligando outros tipos de controles de formulários HTML5 com PHP
+
+A integração de qualquer controle de formulário PHP pode ser feita através do parâmetro NAME de cada um deles. Durante a aula, criamos um formulário com vários tipos de controles e interligamos eles ao arquivo PHP.
+
+Pegando o ano atual com PHP Para obter o ano atual no PHP, utilizamos
+
+$idade = date(“Y”) – $ano;</p>
+
+<p></p>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>integração html5 + php. aula 08</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
+
 </body>
 </html>
 
