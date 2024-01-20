@@ -517,6 +517,277 @@ Pegando o ano atual com PHP Para obter o ano atual no PHP, utilizamos
 
 $idade = date(“Y”) – $ano;</p>
 
+<p>todo formulário em html começa com as tags form e barra form form /form. onde dentro da tag form adiciona o método method de envio fo formulário como get que vai na url e post que é um pacote e nao aparece na url, o atributo action é uma ação, o que o formulário vai fazer com os dados digitados, normalmente quando tem um nome de um outro arquivo com extensão os dados são enviados para esse arquivo que vai fazer o tratamento dos dados. um input dentro de um form precisa de um name nome para identificar e é esse atributo que será identificado pelo arquivo que vai receber os dados do formulário.</p>
+<!-- exercício 01 -->
+<p>para configurar quais valores serão passsados para o arquivo php pelo botão de input tipo radio em cada input tipo radio, cada botão de escolha é necessário o atributo value com o conteúdo para informar qual a informação ou escolha do usuário para o arquivo php.</p>
+<!-- exercício 01 -->
+
+<!-- exercício 02 -->
+<p>se o arquivo php for aberto diretamente sem receber os dados de formulário será mostrado mensagens de erro para cada input não preenchido. para resolver pode usar o operador unário antecedido por isset que é se foi configurado o operador unário deve estar completamente entre parênteses.</p>
+<!-- exercício 02 -->
+
+<!-- exercício 03 -->
+<p>a supertag de php não precisa estar somente no body corpo do arquivo html, pode ser adicionado também no head cabeça do html podendo ter mais de uma supertag. assim como um seletor css para variáveis em css uma supertag php no head de um arquivo html pode receber alguma configuração do formulário e guardar em uma variável para ser usada posteriormente quando necessário sendo necessário a criação da variável que receberá uma configuração usando ou não isset.</p>
+<p>para acessar uma configuração de uma variável php em um seletor css, via arquivo ou style no head é necessário que a configuração que receberá a configuração da variável php esteja dentro da supertag php, ficando: seletor {configuração: <?php echo $variavelphp; ?>;}. ao usar esse conjunto de configurações será gerado um arquivo html diferente mais resumido apenas com as configurações geradas pela escolha das variáveis php e seletor css.</p>
+<!-- exercício 03 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- exercício 03 -->
+    <!-- arquivo php 03cores.php -->
+    <?php
+        $txt = isset($_GET["t"]) ? $_GET["t"] : "Texto genérico";
+        $tam = isset($_GET["tam"]) ? $_GET["tam"] : "12pt";
+        $cor = isset($_GET["cor"]) ? $_GET["cor"] : "#000000";
+    ?>
+    <style>
+        span.texto {
+            font-size: <?php echo $tam; ?>;
+            color: <?php echo $cor; ?>;
+        }
+    </style>
+    <!-- arquivo php 03cores.php -->
+    <!-- exercício 03 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>integração html5 + php. aula 08</title>
+</head>
+<body>
+    <!-- exercício 01 -->
+    <!-- arquivo html -->
+    <form action="arquivo.php" method="get">
+        Valor: <input type="number" name="v">
+        <input type="submit" value="Calcular Raiz">
+    </form>
+    <!-- arquivo html -->
+
+    <!-- arquivo php arquivo.php-->
+    <?php
+        $valor = $_GET["v"];
+        $rq = sqrt($valor);
+        echo "A raiz de $rq é $valor"; // ou
+        echo "A raiz de $rq é " . number_format($rq, 2);
+    ?>
+    <a href="arquivo.html">Voltar</a>
+    <!-- arquivo php arquivo.php-->
+    <!-- exercício 01 -->
+
+    <!-- exercício 02 -->
+    <!-- arquivo html -->
+    <form action="02idade.php" method="get">
+        Nome: <input type="text" name="nome"/><br>
+        Ano de Nascimento: <input type="number" name="ano"/><br>
+        <fieldset><legend>Sexo</legend>
+            <input type="radio" name="sexo" id="masc" value="homem" checked/>
+            <label for="masc">Masculino</label>
+            <input type="radio" name="sexo" id="fem" value="mulher"/>
+            <label for="fem">Feminino</label>
+        </fieldset><br>
+        <input type="submit" value="Enviar"/>
+    </form>
+    <!-- arquivo html -->
+    
+    <!-- arquivo php 02idade.php-->
+    <?php // assim dá erro quando abre o arquivo php diretamente
+        $nome = $_GET["nome"];
+        $ano = $_GET["ano"];
+        $sexo = $_GET["sexo"];
+        $idade = date("Y") - $ano;
+        echo "$nome e tem $idade anos.";
+    ?>
+    <a href="arquivo.html">Voltar</a>
+
+    <?php // assim verifica se foi enviado e passa o valor definido no operador unário
+        $nome = isset($_GET["nome"]) ? $_GET["nome"] : "Não informado";
+        $ano = isset($_GET["ano"]) ? $_GET["ano"] : 0;
+        $sexo = isset($_GET["sexo"]) ? $_GET["sexo"] : "Sem sexo informado";
+        $idade = date("Y") - $ano;
+        echo "$nome e tem $idade anos.";
+    ?>
+    <a href="arquivo.html">Voltar</a>
+    <!-- arquivo php 02idade.php-->
+    <!-- exercício 02 -->
+    
+    <!-- exercício 03 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="03cores.php" method="get">
+            <label for="itxt">Texto: </label>
+            <input type="text" name="t" id="itxt"><br>
+            <label for="itam">Tamanho: </label>
+            <select name="tam" id="itam">
+                <option value="8pt">8</option>
+                <option value="10pt">10</option>
+                <option value="14pt" selected>14</option>
+                <option value="20pt">20</option>
+                <option value="40pt">40</option>
+            </select><br>
+            <label for="icor">Cor: </label>
+            <input type="color" name="cor" id="icor"><br>
+            <input type="submit" value="Gerar">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    
+    <!-- arquivo php 03cores.php -->
+    <?php
+        echo "<span class='texto'>$txt</span>";
+    ?>
+    <!-- arquivo php 03cores.php -->
+    <!-- exercício 03 -->
+</body>
+</html>
+
+-----------------------
+<h1>aula 09. estrutura condicional if.</h1>
+<p>O PHP permite a criação de condicões. Nessa aula, veremos como utilizar a estrutura IF.
+
+A estrutura condicional em PHP é representada da seguinte forma:
+
+if ($idade = 18) {
+
+     $vota = true;
+
+} else {
+
+    $vota = false;
+
+}
+
+Estruturas condicionais aninhadas
+
+Quando colocamos uma condicional dentro da outra, dizemos que estamos aninhando estruturas (termo que se refere a ninho). Para aninhar blocos, utilizamos uma sintaxe semelhante à anterior:
+
+if ($peso 50) {
+
+    $tipo = “muito magro”;
+
+} else {
+
+    if ($peso =50 && $peso 70) {
+
+          $tipo = “peso normal”;
+
+     } else {
+
+        $tipo = “acima do peso”;
+
+     }
+
+}
+
+Simplificando estruturas condicionais aninhadas
+
+No PHP, podemos substituir uma cláusula else seguida de outro if (como feito acima) por uma estrutura elseif {} que vai se comportar exatamente da mesma maneira, mas usará menos blocos.
+
+if ($tipo == “nacional”) {
+
+     $imposto = 0;
+
+} elseif ($tipo == “importado”) {
+
+     $imposto = 60;
+
+} elseif ($tipo == “mercosul”) {
+
+     $imposto = 20;
+
+} else {
+
+     $imposto = 80;
+
+}
+
+Na próxima aula veremos como criar estruturas condicionais com múltiplos valores utilizando o comando switch. Até lá!</p>
+<p>operadores unários são operadores ternários.</p>
+<!-- exercício 01 -->
+<p>uma estrutura if pode verificar várias condições de uma expressão, onde caso a primeira condição entre parênteses não seja satisfeita se será verificado uma segunda condição senão else ou outras condições antes de finalizar onde: if se (condição) {comandos se satisfefito} else {comandos se if não for satisfeito}</p>
+<!-- exercício 01 -->
+
+<!-- exercício 02 -->
+<p>uma condição if  pode ficar dentro de outra estrutura condicional if, é uma estrutura de condição aninhada.</p>
+<!-- exercício 02 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="01.php" action="get">
+            Ano de Nascimento:
+            <input type="number" name="ano" placeholder="4 dígitos">
+            <input type="submit" value="Verificar">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    
+    <!-- arquivo php 01.php -->
+    <div>
+        <?php
+            $a = isset ($_GET["ano"]) ? $_GET["ano"] : 1900;
+            $i = date("Y") - $a;
+            echo "Nasceu em $a e a idade é $i anos."<br>;
+            if ($i >= 18) {
+                $v = "pode votar";
+                $d = "pode dirigir";
+            } else {
+                $v = "não pode votar";
+                $d = "não pode dirigir";
+            }
+            echo "Então $v e $d.";
+        ?>
+    </div>
+    <!-- arquivo php 01.php -->
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="01.php" action="get">
+            Ano de Nascimento:
+            <input type="number" name="ano" placeholder="4 dígitos">
+            <input type="submit" value="Verificar">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php 01.php -->
+    <div>
+        <?php
+            $a = isset ($_GET["ano"]) ? $_GET["ano"] : 1900;
+            $i = date("Y") - $a;
+            echo "Nasceu em $a e a idade é $i anos."<br>;
+            if ($i < 16) {
+                $tipodevoto = "Não vota.";
+            }
+            else {
+                if ($i >= 16 && $i < 18) {
+                    $tipodevoto = "Opcional";
+                }
+                else {
+                    $tipodevoto = "Obrigatório.";
+                }
+            }
+            echo "Então $tipodevoto.";
+        ?>
+    </div>
+    <!-- arquivo php 01.php -->
+    <!-- exercício 2 -->
+
+    <!-- exercício 3 -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 10. .</h1>
+<p></p>
 <p></p>
 
 <!DOCTYPE html>
@@ -524,15 +795,122 @@ $idade = date(“Y”) – $ano;</p>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>integração html5 + php. aula 08</title>
+    <title>. aula 09</title>
 </head>
 <body>
+    <!-- arquivo html -->
+    <!-- arquivo html -->
     
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 11. .</h1>
+<p></p>
+<p></p>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <!-- arquivo html -->
+    <!-- arquivo html -->
+    
+    <!-- arquivo php -->
+    <?php
+    ?>
+    <!-- arquivo php -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 12. .</h1>
+<p></p>
+<p></p>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <!-- arquivo html -->
+    <!-- arquivo html -->
+    
+    <!-- arquivo php -->
+    <?php
+    ?>
+    <!-- arquivo php -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 13. .</h1>
+<p></p>
+<p></p>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <!-- arquivo html -->
+    <!-- arquivo html -->
+    
+    <!-- arquivo php -->
+    <?php
+    ?>
+    <!-- arquivo php -->
 </body>
 </html>
 
 
 
+
+-----------------------
+<h1>aula 14. .</h1>
+<p></p>
+<p></p>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <<!-- arquivo html -->
+    <!-- arquivo html -->
+    
+    <!-- arquivo php -->
+    <?php
+    ?>
+    <!-- arquivo php -->
+</body>
+</html>
+
+
+-----------------------
+-----------------------
 
 </body>
 </html>
