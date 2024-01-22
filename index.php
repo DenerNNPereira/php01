@@ -706,8 +706,12 @@ Na próxima aula veremos como criar estruturas condicionais com múltiplos valor
 <!-- exercício 01 -->
 
 <!-- exercício 02 -->
-<p>uma condição if  pode ficar dentro de outra estrutura condicional if, é uma estrutura de condição aninhada.</p>
+<p>uma condição if  pode ficar dentro de outra estrutura condicional if, é uma estrutura de condição aninhada. pode usar o comando elseif senao se para resumir a quantidade de linhas e colchetes usados.</p>
 <!-- exercício 02 -->
+
+<!-- exercício 03 -->
+<p>ler 2 notas entre 0 e 10 cada, calcular a média, verificar se a média está entre 0 e 5 está reprovado, entre 5 e 7 em recuperação e 7 ou mais está aprovado.</p>
+<!-- exercício 03 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -749,14 +753,14 @@ Na próxima aula veremos como criar estruturas condicionais com múltiplos valor
     <!-- exercício 2 -->
     <!-- arquivo html -->
     <div>
-        <form action="01.php" action="get">
+        <form action="02.php" action="get">
             Ano de Nascimento:
             <input type="number" name="ano" placeholder="4 dígitos">
             <input type="submit" value="Verificar">
         </form>
     </div>
     <!-- arquivo html -->
-    <!-- arquivo php 01.php -->
+    <!-- arquivo php 02.php -->
     <div>
         <?php
             $a = isset ($_GET["ano"]) ? $_GET["ano"] : 1900;
@@ -766,7 +770,7 @@ Na próxima aula veremos como criar estruturas condicionais com múltiplos valor
                 $tipodevoto = "Não vota.";
             }
             else {
-                if ($i >= 16 && $i < 18) {
+                if (($i >= 16 && $i < 18) || ($i > 65)) {
                     $tipodevoto = "Opcional";
                 }
                 else {
@@ -774,21 +778,75 @@ Na próxima aula veremos como criar estruturas condicionais com múltiplos valor
                 }
             }
             echo "Então $tipodevoto.";
+            // ou
+            if ($i < 16) {
+                $tipodevoto = "Não vota.";
+            }
+            elseif (($i >= 16 && $i < 18) || ($i > 65)) {
+                $tipodevoto = "Opcional";
+            }
+            else {
+                $tipodevoto = "Obrigatório.";
+            }
+            echo "Então $tipodevoto.";
         ?>
     </div>
-    <!-- arquivo php 01.php -->
+    <!-- arquivo php 02.php -->
     <!-- exercício 2 -->
 
     <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="03.php" action="get">
+            Notas de 0 a 10:
+            <input type="number" name="nota1" placeholder="Nota 1">
+            <input type="number" name="nota2" placeholder="Nota 2">
+            <input type="submit" value="Calcular Média">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php 02.php -->
+    <div>
+        <?php
+            $nota1 = isset ($_GET["nota1"]) ? $_GET["nota1"] : "Não informado 1";
+            $nota2 = isset ($_GET["nota2"]) ? $_GET["nota2"] : "Não informado 2";
+            $media = ($nota1 + $nota2) / 2;
+            if ($media <= 5) {
+                $situacao = "Reprovado";
+            }
+            elseif (($media >= 5) || ($media <= 7)) {
+                $situacao = "Em recuperação";
+            }
+            elseif ($media >= 7) {
+                $situacao = "Aprovado";
+            }
+            else {
+                echo "Faltou alguma coisa."
+            }
+            echo "Com essa nota está: $situacao.";
+        ?>
+    </div>
+    <!-- arquivo php 02.php -->
     <!-- exercício 3 -->
 </body>
 </html>
 
 
 -----------------------
-<h1>aula 10. .</h1>
+<h1>aula 10. estrutura condicional switch.</h1>
+<p>Estruturas de condição de múltipla escolha em PHP. Switch case em PHP usa a mesma sintaxe do Java e da Linguagem C e C++.</p>
+<!-- exercício 1 -->
+<p>usando a estrutura condicional switch em cada caso escolha deve ser finalizado com break quebrar para que não seja executados os comandos case seguintes, não é necessário em defout ou na última opção case. a estrutura switch funciona como escolha caso, caso case a escolha seja uma coisa execute um comando e pare break, caso a escolha seja outra execute o comando e pare break. a escolha será comparada em uma variável marcada entre parênteses logo após o termo switch ficando: switch ($variavel) {case opcao1: echo "oucomando1"; break; case opcao2: echo "oucomando2"; break; default: echo "Erro";}</p>
+<p>uma variável recebe através de um input a escolha do usuário, o comando switch recebe essa variável entre parênteses e compara com os casos case, onde se o conteúdo da variável for igual valor após o case, será executado o comando, se não será comparado com o segundo case e assim por diante, caso encontre o valor igual os comandos do case será executado e em seguida o break será executado para sair bloco switch.</p>
+<!-- exercício 1 -->
+<!-- exercício 2 -->
+<p>para cada caso só se pode ter um valor, mas para múltiplos casos pode ter cases diferentes, ficando: switch ($variavel) {case1: case2: case3: echo "escolha1"; break; case4: case5: echo "escolha2"; break; default: echo "nenhumaescolha";}.</p>
+<p>o código em javascript: javascript: history.go(-1) significa volte uma página ou volte para a página anterior. esse código pode ser adicionado a um link ou botão.</p>
+<!-- exercício 2 -->
+<p>lista de estados form tipo select. ao escolher o estado o sistema vai dizer qual a região o estado pertence. inlcuindo distrito federeal.</p>
+<!-- exercício 3 -->
 <p></p>
-<p></p>
+<!-- exercício 3 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -798,39 +856,201 @@ Na próxima aula veremos como criar estruturas condicionais com múltiplos valor
     <title>. aula 09</title>
 </head>
 <body>
+    <!-- exercício 1 -->
     <!-- arquivo html -->
+    <div>
+        <form action="a1001.php" method="get">
+            Número: <input type="number" name="num"><br>
+            <fieldset><legend>Operação</legend>
+                <input type="radio" name="oper" value="1" id="dobro" checked>
+                <label for="dobro">Dobro</label>
+                <input type="radio" name="oper" value="2" id="cubo">
+                <label for="cubo">Cubo</label>
+                <input type="radio" name="oper" value="3" id="raiz">
+                <label for="raiz">Raiz Quadrada</label>
+            </fieldset>
+            <input type="submit" class="botao" value="Calcular">
+        </form>
+    </div>
     <!-- arquivo html -->
     
+    <!-- arquivo a1001.php -->
+    <div>
+        <?php
+        $n = isset($_GET["num"]) ? $_GET["num"] : 0;
+        $o = isset($_GET["oper"]) ? $_GET["oper"] : 1;
+            switch ($o) {
+                case 1:
+                    $r = $n * 2;
+                    break;
+                case 2:
+                    $r = $n ^ 3;
+                    break;
+                case 3:
+                    $r = sqrt($n); // ou $n ^ (1/2) ou ^ (0.5)
+            }
+            echo "O resultado é: $r.";
+            <a href="a1001.php">Voltar</a>
+        ?>
+    </div>
+    <!-- arquivo a1001.php -->
+    <!-- exercício 1 -->
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+        <form method="get" action="1002.php">
+            Dia da semana:
+            <input type="number" name="ds" min="2" max="8" require>
+            <input type="submit" class="botao" value="Analisar">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    
+    <!-- arquivo php 1002.php -->
+    <div>
+        <?php
+            $d = isset ($_GET["ds"]) ? $_GET["ds"] : 0;
+            switch ($d) {
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    echo "Dia útil!";
+                    break;
+                case 7:
+                case 8:
+                    echo "Fim de semana!";
+                    break;
+                default:
+                    echo "Dia inválido";
+            }
+        ?>
+        <br>
+        <a href="javascript: history.go(-1)" classbotao>Voltar</a>
+    </div>
+    <!-- arquivo php 1002.php -->
+    <!-- exercício 2 -->
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="1003.php" method="get">
+            <select name="estado">
+                <option value="MG">Minas Gerais</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="SP">São Paulo</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="RS">Rio grande do Sul</option>
+                <option value="PR">Paraná</option>
+            </select>
+        </form>
+        <input type="submit" value="Enviar">
+    </div>
+    <!-- arquivo html -->
+    
+    <!-- arquivo php 1003.php -->
+    <div>
+        <?php
+            $escolha = isset ($_GET["estado"]) ? $_GET["estado"] : "Inválido";
+            switch ($escolha) {
+                case MG:
+                case ES:
+                case SP:
+                case RJ:
+                    echo "Região Sudeste";
+                    break;
+                case SC:
+                case RS:
+                case PR:
+                    echo "Região Sul";
+                    break;
+                default:
+                    echo "Inválido";
+            }
+        ?>
+    </div>
+    <!-- arquivo php 1003.php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 11. estrutura de repetição while.</h1>
+<p>Vamos agora começar as Estruturas de Repetição em PHP, partindo da estrutura WHILE (enquanto).
+
+A Estrutura While (enquanto), também conhecida como Estrutura de Repetição com Teste Lógico no início, realiza o teste de uma expressão lógica sempre na primeira linha da estrutura. Vamos ver como realizar uma contagem progressiva de 1 até 10, utilizando a estrutura while em PHP.
+
+$c = 1;
+
+while ($c = 10) {
+
+    echo $c; $c++;
+
+}
+
+Durante a aula, veremos também como realizar outras contagens, como por exemplo a contagem regressiva.
+
+Outra coisa que vamos aprender durante essa aula de repetição é criar código HTML dinamicamente, utilizando scripts PHP. No exemplo apresentado, vamos criar várias caixas de texto com nomes e etiquetas diferentes usando uma estrutura de repetição em PHP.</p>
+<!-- exercício 1 -->
+<p></p>
+<!-- exercício 1 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 09</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
     <!-- arquivo php -->
     <div>
         <?php
         ?>
     </div>
     <!-- arquivo php -->
-</body>
-</html>
+    <!-- exercício 1 -->
 
-
------------------------
-<h1>aula 11. .</h1>
-<p></p>
-<p></p>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 09</title>
-</head>
-<body>
+    <!-- exercício 2 -->
     <!-- arquivo html -->
+    <div>
+    </div>
     <!-- arquivo html -->
-    
     <!-- arquivo php -->
-    <?php
-    ?>
+    <div>
+        <?php
+        ?>
+    </div>
     <!-- arquivo php -->
+    <!-- exercício 2 -->
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 3 -->
 </body>
 </html>
 
