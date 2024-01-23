@@ -996,7 +996,148 @@ Durante a aula, veremos também como realizar outras contagens, como por exemplo
 
 Outra coisa que vamos aprender durante essa aula de repetição é criar código HTML dinamicamente, utilizando scripts PHP. No exemplo apresentado, vamos criar várias caixas de texto com nomes e etiquetas diferentes usando uma estrutura de repetição em PHP.</p>
 <!-- exercício 1 -->
-<p></p>
+<p>a estrutura de repetição while enquanto testa a condição antes de executar os comandos. sempre deve adicionar ao comando de execução entre chaves {} um encremento ou decremento para que não a estrutura não entre em loop infinino, nunca pare de se executado. uma variável de controle ou contador recebe um valor e a estrutura while enquanto verifica se essa variável está nas condições configuradas entre parênteses () caso sim será executado os comandos entre chaves, incluindo o incremento ou decremando na variável de controle, quando a variável não satisfaz a condição, o loop while para de ser executado e a variável para de ser alterada, ficando: $variaveldecontrole = valor; while ($variaveldecontrole condiçãológica) {comandos $variaveldecontrole++ ou --} onde a condição lógica pode ser <= >= == != ou qualquer outra desse tipo.</p>
+<p>caso a contagem seja maior que de 1 em 1 não funciona usar $variaveldecontrole++ ou -- deve usar $variaveldecontrole += 2 ou -+ 2 por exemplo. a contagem pode ser regressiva ou progressiva, de 1 em 1 ou 3 em 3 ou qualquer contagem.</p>
+<p>não pode ter aspas duplas dentro de um comando echo de string.</p>
+<!-- exercício 1 -->
+<!-- exercício 2 -->
+<p>para que um formulário seja requerido várias vezes esse formulário pode ficar dentro de um loop while, onde o formulário está em um comando echo, após a tag form e antes da tag barra form usar a supertag php com a variável contador e dentro do while o comando echo com o campo do formulário que precisa repetir. para que cada campo do formulário repetido fique com um name diferente basta nomear o name com a variável de controle: name="v$controle" o texto que indentifica, label não a tag esse eu não sei não testei, também pode ser nomeado dessa forma, então pode ser que o id tampém possa. criação de conteúdo dinâmico.</p>
+<p>para criar uma variável de outra variável usar dois símbolos de cifrão $$ juntos seguidos da variável origem.</p>
+<p><?php
+        $i = 1;
+        while ($1 <= 5) {
+            $v = "num".$i;
+            $nr1 = "v".$i;
+            $$V = isset($_GET["url"]) ? $_GET["url"] : 0;
+            $i++;
+        }
+        $i = 1;
+        while ($i <= 5) {
+            $v = "num".$i;
+            echo "valor $i: " . $$v . "<br/>";
+            $i++;
+        }
+        echo "$num1 $num2 $num3 $num4 $num5"; // mostrando variáveis de variáveis. mesmo efeito do segundo while dessa supertag php.
+    ?></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p>na estrutura while o comando break também funciona, porém ele para o loop independente de se ter finalizado a contagem do contador ou não, o break pode ser usado dentro uma estrutura if else mesmo dentro de um bloco while</p>
+<p>na estrutura while o comando continue continuar faz com que o a estritura continue a ser executada tendo o contador finalizado ou não.</p>
+<p>contador personalizado. 3 campos input number digitáveis, um para indicar o início de uma contagem, outro para indicar o final de uma contagem, máximo e nímimo, um campo para indicar qual o intervalo da contagem, de quanto em quanto aumentar até chegar no máximo deve ser de 1 a 5, botão de enviar. o php deve receber esses valores e iniciando do mínimo contar e mostrar essa contagem até o máximo e finalizar, contando de acordo com o incremento informado. caso o início seja maior que o final, a contagem deve ser regressiva.</p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>estrutura de repetição while. aula 11</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+            $contador = 1;
+            while ($contador <= 10) {
+                echo "Verificado $contador <br/>";
+                $contador++; // $contador += 1; ou $contador = $contador + 1;
+            }
+
+            $contador = 10;
+            while ($contador >= 1) {
+                echo "Verificado $contador <br/>";
+                $contador-- // $contador -= 1; ou $contador = $contador - 1;
+            }
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="1102.php" method="get">
+            <?php
+                $c = 1;
+                while ($c <= 5) {
+                    echo "Valor $c:
+                    <input type='number' name='v$c' max='100' min='0' value='0'><br>";
+                    $c++;
+                }
+            
+            ?>
+            <input type="submit" value="Enviar" class="botao">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 2 -->
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="1103.php" method="get">
+            Início:
+            <input type="number" name="inicio" value="inicio"><br>
+            Final:
+            <input type="number" name="final" value="final"><br>
+            Incremento:
+            <select name="incre">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br>
+
+            <input type="submit" value="Enviar" class="botao">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php 1103.php -->
+    <div>
+        <?php
+            $ini = isset($_GET["inicio"]) ? $_GET["inicio"] : 0;
+            $fim = isset($_GET["final"]) ? $_GET["final"] : 0;
+            $inc = isset($_GET["incre"]) ? $_GET["incre"] : 0;
+            if ($ini < $fim) {
+                while ($ini <= $fim) {
+                    echo "valor: " . $ini + $inc;
+                    $ini = $ini + $inc;
+                }
+            }
+            elseif ($fim < $ini) {
+                while ($fim <= $ini) {
+                    echo "valor: " . $fim + $inc;
+                    $fim = $fim + $inc;
+                }
+            }
+            else {
+                echo "tudo igual: $fim";
+            }
+        ?>
+    </div>
+    <!-- arquivo php 1103.php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+
+-----------------------
+<h1>aula 12. estrutura de repetição do while.</h1>
+<p>Na aula de hoje veremos como funciona a estrutura de repetição while.</p>
+<!-- exercício 1 -->
+<p>a estrutura de repetição do while faz o teste da condição após a execução dos comandos e após o incremento ou decremento da variável de controle. após o comando do faça segue as chaves {} onde estarão os comandos e incremento ou decremento, em seguida o termo while enquanto seguido de parênteses () onde estará as condições para que se volte ou não ao início do comando do faça, finalizado com ponto de vírgula;  ficando: do {comando; $controle ++ ou --;} while (condição); .</p>
 <!-- exercício 1 -->
 <!-- exercício 2 -->
 <p></p>
@@ -1010,7 +1151,7 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 09</title>
+    <title>estrutura de repetição do while. aula 12</title>
 </head>
 <body>
     <!-- exercício 1 -->
@@ -1021,6 +1162,29 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
     <!-- arquivo php -->
     <div>
         <?php
+            $c = 1;
+            do {
+                echo "$c";
+                $c++;
+            } while ($c <= 10);
+
+            $c1 = 1;
+            do {
+                echo "$c1";
+                $c1 += 2;
+            } while ($c1 <= 20);
+
+            $c2 = 10; // regressiva
+            do {
+                echo "$c2";
+                $c2--;
+            } while ($c2 >= 1);
+
+            $c3 = 20; // regressiva
+            do {
+                echo "$c3";
+                $c3 -= 2;
+            } while ($c3 >= 1);
         ?>
     </div>
     <!-- arquivo php -->
@@ -1053,28 +1217,6 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
     <!-- exercício 3 -->
 </body>
 </html>
-
-
------------------------
-<h1>aula 12. .</h1>
-<p></p>
-<p></p>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 09</title>
-</head>
-<body>
-    <!-- arquivo html -->
-    <!-- arquivo html -->
-    
-    <!-- arquivo php -->
-    <?php
-    ?>
-    <!-- arquivo php -->
 </body>
 </html>
 
@@ -1089,7 +1231,7 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 09</title>
+    <title>. aula 13</title>
 </head>
 <body>
     <!-- arquivo html -->
@@ -1115,7 +1257,7 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 09</title>
+    <title>. aula 14</title>
 </head>
 <body>
     <<!-- arquivo html -->
