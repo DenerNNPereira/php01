@@ -1140,10 +1140,10 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 <p>a estrutura de repetição do while faz o teste da condição após a execução dos comandos e após o incremento ou decremento da variável de controle. após o comando do faça segue as chaves {} onde estarão os comandos e incremento ou decremento, em seguida o termo while enquanto seguido de parênteses () onde estará as condições para que se volte ou não ao início do comando do faça, finalizado com ponto de vírgula;  ficando: do {comando; $controle ++ ou --;} while (condição); .</p>
 <!-- exercício 1 -->
 <!-- exercício 2 -->
-<p></p>
+<p>em um input o que estiver na configuração value será o valor padrão do formulário. calculando fatorial usando do while.</p>
 <!-- exercício 2 -->
 <!-- exercício 3 -->
-<p></p>
+<p>exibir uma tabuada de 1 a 10, de acordo com a escolha select de 1 a 10. se o número escolhido for 5, por exemplo mostrar na tela toda a tabuada de 5 na multiplicação de 1 a 10. botão de voltar.</p>
 <!-- exercício 3 -->
 
 <!DOCTYPE html>
@@ -1190,30 +1190,73 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
     <!-- arquivo php -->
     <!-- exercício 1 -->
 
+
     <!-- exercício 2 -->
     <!-- arquivo html -->
     <div>
+        <form action="1202.php" method="get">
+            Valor: 
+            <input type="number" name="val" min="0" max="15" vaule="1">
+            <input type="submit" value="Fatorial">
+        </form>
     </div>
     <!-- arquivo html -->
-    <!-- arquivo php -->
+    <!-- arquivo php 1202.php -->
     <div>
         <?php
+            $v = isset($_GET["val"]) ? $_GET["val"] : 1;
+            echo "<h1>calculando o fatorial de $v </h1>";
+            $c = $v; // contador inicia com o valor recebido do formulário
+            $fat = ;
+            do {
+                $fat = $fat * $c;
+                $c--;
+            } while ();
+            echo "<h2>$v ! = $fat";
         ?>
+        <p><a href="1202.php" class="botao">Voltar</a></p>
     </div>
-    <!-- arquivo php -->
+    <!-- arquivo php 1202.php -->
     <!-- exercício 2 -->
+
 
     <!-- exercício 3 -->
     <!-- arquivo html -->
     <div>
+        <form action="1203.php" method="get">
+            <select name="tabuada" value="1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <input type="submit" value="Enviar">
+        </form>
     </div>
     <!-- arquivo html -->
-    <!-- arquivo php -->
+    <!-- arquivo php 1203.php -->
     <div>
         <?php
+            $selec = isset($_GET["tabuada"]) ? $_GET["tabuada"] : 1;
+            $cont = $selec; // contador
+            echo "<h1>A tabuada de $selec é: </h1><br>";
+            do {
+                $x = 1;
+                $resul = $selec * $x;
+                echo "$selec x $x = $resul";
+                $x++;
+                $cont--;
+            } while ($cont > 0);
         ?>
+        <p><a href="1203.php" class="botao">Voltar</a></p>
     </div>
-    <!-- arquivo php -->
+    <!-- arquivo php 1203.php -->
     <!-- exercício 3 -->
 </body>
 </html>
@@ -1222,25 +1265,130 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 
 
 -----------------------
-<h1>aula 13. .</h1>
-<p></p>
-<p></p>
+<h1>aula 13. estrutura de repetição for.</h1>
+<p>Aprenda a utilizar a estrutura de repetição For do PHP com vários exercícios práticos, demonstrações detalhadas e exercícios de fixação.</p>
+<p>a estrutura de repetição for para é semelhante a estrutura de repetição while. formada por variável contador ou de controle no início condição no meio e incremento ou decremento no final onde após segue os comandos entre chaves. inicia com o termo for e abre parênteses () onde dentro estarão separados por ponto e vírgula ; a variável de controle seguido da condição e incremento ou decremento fecha parênteses e abre chaves onde ficará os comandos fecha chaves {} ficando: for ($variaveldecontrole; condição; $variaveldecontrole++ ou --) {comandos} a condição pode ser uma condição lógica maior igual >= menor igual <= igual == ou qualquer outra que funcione. o comando echo pode ser substituido por print sem dano, ambos são comandos de saída.</p>
+<!-- exercício 1 -->
+<p>a variável contadora ou de controle dentro de um for para só funciona dentro do for a qual pertence, portanto pode ter vários for com o mesmo nome de variável de controle.</p>
+<!-- exercício 1 -->
+<!-- exercício 2 -->
+<p>é possível criar formulários por exemplo em um arquivo html. dentro de uma tag select pode ser usado um script php de uma estrutura de repetição para criar dinamicamente as opções option do formulário ficando na linha de identação tag form, dentro dessa a tag select, dentro dessa a supertag php e dentro dessa uma estrutura de repetição com um comando echo para um option.</p>
+<p>o script do javascript: javascript:history.go(-1) pode ser usado em um link a para voltar uma página ou página anterior.</p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p>receber um número do usuário e dizer se esse número é ou não primo. mostrar quais os múltiplos quantidade de múltiplos e se é ou não primo.</p>
+<!-- exercício 3 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 13</title>
+    <title>estrutura de repetição for. aula 13</title>
 </head>
 <body>
+    <!-- exercício 1 -->
     <!-- arquivo html -->
+    <div>
+    </div>
     <!-- arquivo html -->
-    
     <!-- arquivo php -->
-    <?php
-    ?>
+    <div>
+        <?php
+            for ($i = 1; $i <= 10; $i++) {
+                echo "$i ";
+            }
+            echo "<br>";
+            for ($i = 10; $i >= 1; $i--) {
+                echo "$i ";
+            }
+            echo "<br>";
+            for ($i = 0; $i <= 50; $i++) {
+                echo "$i ";
+            }
+            echo "<br>";
+            for ($i = 20; $i >= 1; $i -= 2) {
+                print "$i ";
+            }
+        ?>
+    </div>
     <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php 1301.php -->
+    <div> <!-- este trecho cria dinamicamente options para o formulário select -->
+        <form method="get" action="1302.php">
+            <select name="num">
+                <?php
+                    for ($c = 1; $c <= 1; $c++) {
+                        echo "<option>$c</option>";
+                    }
+                ?>
+            </select>
+            <input type="submit" value="Tabuada">
+        </form>
+    </div>
+    <!-- arquivo php 1301.php -->
+    <!-- arquivo php 1302.php -->
+    <div>
+        <?php
+            $n = isset($_GET["num"]) ? $_GET["num"] : 1;
+            for ($c = 1; $c <= 10; $c++) {
+                $r = $n * $c;
+                echo "$n x $c = $r <br>";
+            }
+        ?>
+        <br>
+        <a href="javascript:history.go(-1)">Voltar</a>
+    </div>
+    <!-- arquivo php 1302.php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+        <form action="1303.php" method="get">
+            Digite um número:
+            <input type="number" name="num">
+            <input type="submit" value="É primo?">
+        </form>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php 1303.php -->
+    <div>
+        <?php
+            $imp = isset($_GET["num"]) ? $_GET["num"] : 1;
+            echo "Analisando: $imp ... <br>" 
+            $tot = 0;
+            $cond = 0;
+            echo "Multiplos: "; // tem que estar dentro de um for?
+            for ($c = 1; $c <= $imp; $c++){
+                if (($imp % $c) == 0) {
+                    echo $c;
+                    $tot++;
+                    if ($tot <= 2) {
+                        $cond = "É primo";
+                    }
+                    elseif ($tot > 2) {
+                        $cond = "Não é primo";
+                    }
+                }
+            }
+            echo "<br>"            
+            echo "Total: $tot";
+            echo "Resultado: o número $imp $cond";
+        ?>
+        <br><a href="html" class="botao">Voltar</a>
+    </div>
+    <!-- arquivo php 1303.php -->
+    <!-- exercício 3 -->
 </body>
 </html>
 
@@ -1248,9 +1396,197 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 
 
 -----------------------
-<h1>aula 14. .</h1>
+<h1>aula 14. rotinas em php parte 1.</h1>
+<p>procedimento pode ser o mesmo que uma função function. a função recebe os parâmetros entre parênteses logo após o nome da função procedimento: function nomedafuncao (parâmetro1, parâmetro2) {} os comandos ou procedimentos a serem executados fican entre chaves {} alguma função não retorna valor, portando algum comando para exibir ou retornar esse valor encontrado após a realização dos procedimentos comandos deve ser adicionado, em php pode existir funções que retornam ou não algum valor. ao chamar uma função que recebe parâmetros entre parênteses deve adicionar os valores desses parâmetros: nomedafuncao(valorparâmetro1, valorparâmetro2); e finalizar com ponto e vírgula ; o primeiro valor na chamada será atribuído ao primeiro parâmetro na criação da função e o segundo valor ao segundo parâmetro, e assim em diante caso tenha mais parâmetros.</p>
+<!-- exercício 1 -->
+<p>uma função pode ter várias chamadas com valores de parâmetros diferentes. os parâmetros também pode ser variáveis. uma função com retorno usa o comando return retorne que devolve para a chamada da função o valor do resultado, a uma variável pode receber uma chamada de função passando os valores, então após a execução da função o comando return irá enviar para a variável que chamou a função o valor encontrado, e a variável terá como valor esse resultado retornado: $variavel = nomedafuncao(valorparâmetro1, valorparâmetro2); onde o retorno da função será atribuído a variável $variavel. o comando return deve ser seguido da variável ou valor que se precise retornar.</p>
+<!-- exercício 2 -->
+
+<!-- exercício 2 -->
+<p>o comando return pode ser seguuido de uma expressão aritmética por exemplo: return $a +$b; e uma função de soma não necessariamente vai precisar de uma variável de resultado.</p>
+<!-- exercício 2 -->
+
+<!-- exercício 3 -->
+<p>uma função pode ser criada sem receber parâmetros entre parênteses () e a chamada dessa função pode ter vários valores de parâmetros, em php o a função func_get_args() recebe esses parâmetros e guarda em uma variável tipo vetor, caso receba muitos parâmetros, ficando a chamda da função: $variavel = nomedafuncao(1, 2, 3, 4, 5); onde cada número é um parâmetro e function nomedafuncao () {$p = func_get_args();} onde a variável $p receberá todos os valores repassados na chamada da função.</p>a função em php func_num_args(); recebe um valor referente a quantidade de parâmetros repassados pela chamada da função: $variavel = nomedafuncao(10, 20, 30, 40, 50); onde: function nomedafuncao () {$tot = func_num_args();} o qual a variável $tot receberá o valor 5 que é a quantidade de parâmetros repassados. no caso de se fazer uma soma com esses valores, basta usar uma estrutura de repetição for.</p>
+<p>em uma estrutura de repetição for para indicar que vai utilizar o valor que está sendo usado na marcação da contagem, usar colchetes [] antecedido pela variável que se está contando e dentro dos colchetes a variável de controle.</p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rotinas em php parte 1. aula 14</title>
+</head>
+<body>
+
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+            function soma ($a, $b) { // função sem retorno
+                $s = $a + $b;
+                echo "<p>A soma é: $s</p>";
+            }
+            soma(3, 4);
+            soma(2, 8);
+            $x = 9;
+            $y = 15;
+            soma($x, $y);
+
+            function soma2($a, $b) { // função com retorno
+                $s = $a + $b;
+                return $s;
+            }
+            $resul = soma(3, 4);
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+            function soma3($a, $b) { // função com retorno, os parâmentros $a e $b receberão os valores repassados pela chamada da função que estão dentro das variáveis $x e $y
+                $s = $a + $b;
+                return $s; // ou
+                //function soma3($a, $b) {return $a + $b;}
+            }
+            $x = 9;
+            $y = 15;
+            $r = soma3($x, $y); // os valore de $x e $y serão enviados para a função soma3
+            echo "A soma de $x e $y é: $r";
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+            function soma4 () {
+                $p = func_get_args();
+                $tot = func_num_args();
+                $s = 0;
+                for ($i = 0; $i < $tot; $i++) {
+                    $s = $s + $p[$i]; // ou $s += $p[$i];
+                }
+                return $s;
+            }
+            $res = soma4(3, 4, 8, 1, 2);
+
+            function soma5 () {
+                $p = func_get_args();
+                $t = func_num_args();
+                $s = 0;
+                for ($i = 0; $i < $t; $i++) {
+                    $s = $s + $p[$i]; // ou $s += $p[$i];
+                }
+                return $s;
+            }
+            $r = soma5(2, 3, 5, 8, 9, 4);
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+-----------------------
+<h1>aula 15. rotinas em php parte 2.</h1>
+<p>Criando funções e procedimentos em PHP com passagem de parâmetros por valor e passagem de parâmetros por referência.
+
+Aprenda como utilizar as instruções include, require, include_once, require_once para incluir arquivos externos em seu script PHP.</p>
 <p></p>
+<!-- exercício 1 -->
 <p></p>
+<!-- exercício 2 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rotinas em php parte 2. aula 14</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+-----------------------
+<h1>aula 16. .</h1>
+<p></p>
+<!-- exercício 1 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -1260,17 +1596,240 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
     <title>. aula 14</title>
 </head>
 <body>
-    <<!-- arquivo html -->
+    <!-- exercício 1 -->
     <!-- arquivo html -->
-    
+    <div>
+    </div>
+    <!-- arquivo html -->
     <!-- arquivo php -->
-    <?php
-    ?>
+    <div>
+        <?php
+        ?>
+    </div>
     <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
 </body>
 </html>
 
+-----------------------
+<h1>aula 17. .</h1>
+<p></p>
+<!-- exercício 1 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 14</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+-----------------------
+<h1>aula 18. .</h1>
+<p></p>
+<!-- exercício 1 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 14</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
+</body>
+</html>
+
+-----------------------
+<h1>aula 19. .</h1>
+<p></p>
+<!-- exercício 1 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 2 -->
+<p></p>
+<!-- exercício 2 -->
+<!-- exercício 3 -->
+<p></p>
+<!-- exercício 3 -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>. aula 14</title>
+</head>
+<body>
+    <!-- exercício 1 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php -->
+    <!-- exercício 1 -->
+
+
+    <!-- exercício 2 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 2 -->
+
+
+    <!-- exercício 3 -->
+    <!-- arquivo html -->
+    <div>
+    </div>
+    <!-- arquivo html -->
+    <!-- arquivo php .php -->
+    <div>
+        <?php
+        ?>
+    </div>
+    <!-- arquivo php .php -->
+    <!-- exercício 3 -->
+</body>
+</html>
 -----------------------
 -----------------------
 
