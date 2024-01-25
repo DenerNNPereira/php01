@@ -1513,15 +1513,18 @@ Outra coisa que vamos aprender durante essa aula de repetição é criar código
 <p>Criando funções e procedimentos em PHP com passagem de parâmetros por valor e passagem de parâmetros por referência.
 
 Aprenda como utilizar as instruções include, require, include_once, require_once para incluir arquivos externos em seu script PHP.</p>
-<p></p>
+
 <!-- exercício 1 -->
-<p></p>
+<p>o valor do parâmetro repassado para a função como passagem por valor não altera o valor da variável que está fora da função, como foi feito na aula 14 o retorno da função será o resultado dos comandos, porém a variável fora da função não terá o valor alterado. na passagem por referência não é o valor que é repassado e sim a variável, portanto o valor é alterado após a chamada e execução da função, para se passar por referência, na criação da função entre parêntes usar e comercial & antes da variável que será a referência ficando: function nomedafuncao (&$variavel) {comandos}.</p>
+<!-- exercício 1 -->
+
 <!-- exercício 2 -->
+<p>rotinas externas estão em pacotes ou arquivos separados. para que uma função ou outra configuração possa ser executado em um arquivo estando em outro arquivo usar a função include no arquivo que vai receber que vai usar um determinado comando ou função, o nome do arquivo onde a função a ser usada está deve estar entre aspas duplas "" com exensão do arquivo finalizado por ponto e vírgula ; e antecedido pelo termo include, ficando: include "nomedoarquivo.exensao"; dentro da supertag php. include pode incluir tags html ou php.</p>
 <!-- exercício 2 -->
-<p></p>
-<!-- exercício 2 -->
+
 <!-- exercício 3 -->
-<p></p>
+<p>o comando require requerido funciona como o comando include ficando: require "nomedoarquivo.exensao";. a diferença é que no caso do require, o arquivo a ser incluído tem que estar disponível, caso não esteja a função será parada e não haverá resultados disponíveis. no caso do comando inlcude, caso o arquivo não esteja disponível, o sistema continuará sendo executado.</p>
+<p>os comandos include_once e require_once fazem com que um arquivo que precise ser carregado em outro arquivo, ao receber esse comando verifique se já foi carregado, se não, carregue, e se sim, não carregue. quando não tem o termo once, caso tenha um segundo ou terceiro e por aí vai, comando para incluir ou requerer um outro arquivo ele será carregado mesmo que já tenha sido carregado, tendo portanto duplicidade ou mais.</p>
 <!-- exercício 3 -->
 
 <!DOCTYPE html>
@@ -1540,6 +1543,38 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
     <!-- arquivo php -->
     <div>
         <?php
+            function nomedafuncao ($x) { // passagem por valor
+                $x = $x + 2;
+                echo $x;
+            }
+            $a = 3;
+            nomedafuncao ($a);
+            echo $a; // vai mostrar o valor 3
+
+            function nomedafuncao2 (&$x) { // passagem por referência
+                $x = $x + 2; // ou $x += 2;
+                echo $x;
+            }
+            $a = 3;
+            nomedafuncao2 ($a);
+            echo $a; // vai mostrar o valor 5
+
+
+            function nomedafuncao3 ($x) { // passagem por valor
+                $x += 5;
+                echo "<p>O valor na função é: $x</p>"; // mostra o valor 9
+            }
+            $a = 4;
+            nomedafuncao3 ($a);
+            echo $a; // vai mostrar o valor 4
+
+            function nomedafuncao4 (&$x) { // passagem por referência
+                $x += 5;
+                echo "<p>O valor na função é: $x</p>"; // mostra o valor 9
+            }
+            $a = 4;
+            nomedafuncao4 ($a);
+            echo $a; // vai mostrar o valor 9
         ?>
     </div>
     <!-- arquivo php -->
@@ -1551,12 +1586,25 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
     <div>
     </div>
     <!-- arquivo html -->
-    <!-- arquivo php .php -->
+    <!-- arquivo php -->
     <div>
-        <?php
-        ?>
+        <?php // arquivodasfunções.php
+            function ola() {
+                echo "<h1>Olá mundo!</h1>";
+            }
+            function mostrarvalor ($v) {
+                echo "<h2>Recebi o valor de $v</h2>";
+            }
+        ?>// arquivodasfunções.php
+
+        <?php // arquivo que vai usar as funções da supertag anterior que seria um outro arquivo php
+            include "arquivodasfuncoes.php"; // comando que inclui o arquivo que tem as funções
+            echo "<h1>Chamando função de outro arquivo</h1>";
+            ola(); // comando que chama a função ola do arquivo anterior
+            mostrarvalor(4); // comando que chama a função mostrarvalor do arquivo anterior enviando o valor 4 que será salvo na variável $v da função.
+        ?> <!-- arquivo que vai usar as funções da supertag anterior que seria um outro arquivo php -->
     </div>
-    <!-- arquivo php .php -->
+    <!-- arquivo php -->
     <!-- exercício 2 -->
 
 
@@ -1576,7 +1624,7 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
 </html>
 
 -----------------------
-<h1>aula 16. .</h1>
+<h1>aula 16. funções string em php parte 1.</h1>
 <p></p>
 <!-- exercício 1 -->
 <p></p>
@@ -1593,7 +1641,7 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 14</title>
+    <title>funções string em php parte 1. aula 16</title>
 </head>
 <body>
     <!-- exercício 1 -->
