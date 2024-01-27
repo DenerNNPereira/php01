@@ -1625,15 +1625,57 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
 
 -----------------------
 <h1>aula 16. funções string em php parte 1.</h1>
-<p></p>
+<p>Nessa aula, veremos uma lista de funções para Strings usando PHP. São funções internas que já existem na linguagem. A lista de funções de manipulação de Strings que serão vistas nessa aula é composta pelas instruções:
+
+Função printf() : Permite exibir uma string com itens formatados.
+Função print_r() : Exibe coleções, objetos e variáveis compostas (vetores e matrizes) de maneira organizada.
+
+Função wordwrap() : Cria quebras de linha ou divisões em uma string em um tamanho especificado.
+
+Função strlen() : Permite verificar o tamanho de uma string, contando seus caracteres (inclusive espaços em branco).
+Função trim() : Elimina espaços em branco antes e depois de uma string.
+
+Função ltrim() : Elimina espaços no início de uma string.
+
+Função rtrim() : Elimina espaços em branco no final de uma string.
+
+Função str_word_count() : Conta quantas palavras uma string possui.
+Função explode() : Quebra uma string e coloca os itens em um vetor.
+
+Função str_split() : Coloca cada letra de uma string em uma posição de um vetor.
+
+Função implode() : Transforma um vetor inteiro em uma string.
+
+Função chr() : Retorna um caractere de acordo com seu código ASCII passado como parâmetro.
+
+Função ord() : Retorna o código ASCII de um caractere passado como parâmetro.
+
+Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
+<p>tudo que estiver entre aspas é uma string para o php.</p>
+<p>a função printf imprimir formatado vem da linguagem c e pode ser substituído por echo e vice versa, equivalente a função number_format. a função printf pode substituir o que está usando um marcador % por um valor ou variável definido após as aspas dupas separado por vírgula em um comando printf, onde um símbolo de porcentagem % é seguido do tipo de variável vai ser substituída, e ao final o nome da variável em ordem caso tenha mais de uma, dentro de parênteses, ficando: printf ("texto %tipodevariável1 texto %tipodevariável2", $variavel1, $variavel2); onde tipo de variável é f float, s string, n number etc. para formatação de números tipo float após o símbolo de porcentagem % seguido de ponto . o número que estiver após o ponto será a quantidade de casas decimais após a vírgula que será mostrado, ficando: %.2 onde 2 serão duas casas decimais após a vírgula se 3 serão três casas decimais após a vírgula.</p>
+<p>o comando printf aceita vários parâmetros, alguns são:
+    %d = mostra valor decimal (positivo ou negativo);
+    %u = mostra valor decimal sem o sinal (apenas positivos);
+    %f = mostra valor real;
+    %s = mostra uma string.
+</p>
+
 <!-- exercício 1 -->
 <p></p>
+<!-- exercício 1 -->
+
 <!-- exercício 2 -->
-<!-- exercício 2 -->
+<p>em php não é necessário declarar um vetor, basta adicionar variáveis com o mesmo nome, porém indicando qual índice o valor pertence entre colchetes [] e as variáveis devem ter o mesmo nome, ficando : $x[0] = 4; $x[1] = 3; $x[2] = 4; sendo que o índice de um vetor sempre se inicia em zero 0 o segundo índice do vetor sempre será 1 e assim por diante. ao usar o comando print_r em um vetor criado dessa forma será mostrado o vetor array com todos os índices, print_r ($x); mostra: array ([0] =>4 [1] => 8 [2] => 3) onde o símbolo => representa atribuição</p>
+<p>um array também pode ser definido criado em uma única linha onde após a atribuição da variável o termo array vetor será usado para indicar que essa variável é um vetor array onde os valores serão atriuídos enter parênteses separados por vírgula, ficando: $vetorarray = array (1,2,4,5);</p>
+<p>o comando print_r pode ser substituído pelos comandos var_dump($nomedovetorouvariavel); ou var_export($nomedovetorouvariavel); que são bem parecidas entre as 3 funções.</p>
+<p>a função wordwrap quebra linhas do texto ao serem exibidas no código fonte gerado no navegador, para que essa quebra de linha seja visível no navegador pela página, basta adicionar a tag br e para que seja visível tanto no navegador quanto no código fonte enviado ao navegador após a tag br adicionar o comando \n ambos entre aspas duplas, ficando: $r = wordwrap (st, 20, "<br>\n"); onde st, 20 significa quantos caracteres ficarão em cada linha antes da quebra de linha. caso seja adicionado o termo false falso, o wordwrap não quebrará a palavra de acordo com a quantidade de caracteres indicado em st. caso seja adicionado o termo true verdadeiro, o wordwrap irá quebrar a palavra de acordo com a quantidade de caracteres indicado em st.</p>
+<p>a função strlen conta quantos caracteres, incluído espaços entre as palavras, ficando: $txt = "Texto de exemplo"; $tamanho = strlen($txt); echo $tamanho; o comando echo irá mostrar em números a quantidade de cacteres da string.</p>
+<p>a função trim elimina os espaços digitados antes da primeira palavra e depois da última palavra de uma string, mantendo os espaços entre as palavras guardando a nova frase em uma nova variável. a função ltrim funciona da mesma forma, porém retira apenas os espaços no início da string, antes da primeira palavra. a função rtrim funciona da mesma forma, porém retira apenas os espaços no final da string, depois da última palavra.</p>
 <p></p>
 <!-- exercício 2 -->
+
 <!-- exercício 3 -->
-<p></p>
+<p>a função str_word_count conta e mostra quantas palavras tem em uma string.</p>
 <!-- exercício 3 -->
 
 <!DOCTYPE html>
@@ -1651,7 +1693,11 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
     <!-- arquivo html -->
     <!-- arquivo php -->
     <div>
-        <?php
+        <?php // php para printf
+            $p = "Leite";
+            $pr = 4.5;
+            echo "O $p custa R$ ", number_format($pr, 2); // ou
+            printf ("O %s custa R$ %.2f", $p, $pr);
         ?>
     </div>
     <!-- arquivo php -->
@@ -1666,6 +1712,40 @@ Aprenda como utilizar as instruções include, require, include_once, require_on
     <!-- arquivo php .php -->
     <div>
         <?php
+            $x[0] = 4;
+            $x[1] = 3;
+            $x[2] = 4;
+            print_r ($x); // mostra array ([0] =>4 [1] => 8 [2] => 3)
+
+            $v2 = array (3,7,6,2,1,9);
+            print_r ($v2); // mostra array ([0] =>3 [1] => 7 [2] => 6 [3] =>2 [4] => 1 [5] => 9)
+
+            $t = "Textão que será quebrado com a função wordwrap."
+            $r = wordwrap (st, 20, "<br>\n", false); // não quebra a palavra, apenas a linha
+            $r = wordwrap (st, 20, "<br>\n", true); // quebra a palavra
+
+            $txt = "Texto de exemplo";
+            $tamanho = strlen($txt);
+            echo $tamanho; // mostra a quantidade de carcteres contidos em $txt
+            echo (strlen($txt)); // mostra a quantidade de carcteres contidos em $txt
+
+            $nome = "xxxJoséxdaxSilvaxxx"; // os x simulam espaços vazios
+            echo (strlen($nome)); // mostra o resultado 19 caracteres
+            $novo = trim($nome); // retirando espaços vazios x
+            echo ($novo); // mostra José da Silva 
+            echo (strlen($novo)); // mostra o resultado 13 pois não tem mais espaços vazios no começo e no final da string
+
+            $nome = "xxxJoséxdaxSilvaxxx"; // os x simulam espaços vazios
+            echo (strlen($nome)); // mostra o resultado 19 caracteres
+            $novo = ltrim($nome); // retirando espaços vazios x do início
+            echo ($novo); // mostra José da Silva com espaços vazios no final
+            echo (strlen($novo)); // mostra o resultado 16 pois não tem mais espaços vazios no começo, mas tem no final da string
+
+            $nome = "xxxJoséxdaxSilvaxxx"; // os x simulam espaços vazios
+            echo (strlen($nome)); // mostra o resultado 19 caracteres
+            $novo = rtrim($nome); // retirando espaços vazios x do final
+            echo ($novo); // mostra José da Silva com espaços vazios no início
+            echo (strlen($novo)); // mostra o resultado 16 pois não tem mais espaços vazios no final, mas tem no começo da string
         ?>
     </div>
     <!-- arquivo php .php -->
