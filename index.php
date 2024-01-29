@@ -1675,7 +1675,22 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <!-- exercício 2 -->
 
 <!-- exercício 3 -->
-<p>a função str_word_count conta e mostra quantas palavras tem em uma string.</p>
+<p>a função str_word_count conta e mostra quantas palavras tem em uma string ou uma variável que guarda uma frase, ficando: $variavelparasalvaraquantidade = str_word_count($variavelparasalvaraquantidade, 0); onde zero 0 apenas conta as palavras, caso o valor seja 1 indicará que foi gerado um vetor onde a primeira posição é uma palavra, a segunda a terceira palavra e assim sucessivamente. caso o valor seja 2 gera o vetor mantendo a posição de cada palavra na string a qual cada letra e cada espaço é um índice no vetor e é mostrado em qual índica inicia a palavra.</p>
+<p>a função explode funciona semelhante ao str_word_count porém entre aspas duplas é definido qual o caractere de separação das palavras, ficando: $variavel = explode(" ", $variavel2); onde a variavel2 é onde está salvo a string frase, e variavel é onde será salvo o resultado vetor.</p>
+<p>a função str_split funciona semelhante a função explode. onde o explode pega cada palavra a joga em um índice enquanto str_split pega cada letra e joga em um índice, ficando $variavel = str_split($variavel2); onde variavel2 é onde está a palavra, string ou frase, e variável é onde vai salvar o vetor com os índices.</p>
+<p>a função implode faz o contrário da função explode juntando vários índices em um único texto variável, ficando: $texto = implode ("#", $vetor); onde $vetor é onde está salvo as palavras para serem unidas e cada índice é uma palavra e $texto é onde será salvo a união das palavras, o caractere entre aspas duplas "#" indicado entre parêntese é qual caractere será adicionado entre as palavras ao uní-las.</p>
+<p>a função chr mostra qual letra pertence ao código digitado, ficando: $letra = chr(67); onde $letra é a variável que receberá e guradará a informação, 67 é qual o código do caractere que pdoe ser qualquer um existente.</p>
+<p>a função ord faz o o contrário da função chr mostrando o código de uma letra onde entre parênteses estará a variável onde a letra está salva, ficando: $cod = ord($letra); onde $cod é onde o código será salvo e $letra é a variável onde se encontra a letra que se deseja encontrar o código.</p>
+<p>funções vistas nessa aula:
+    printf();
+    print_r();
+    wordwrap();
+    str_len();
+    trim();
+    ltrim();
+    rtrim();
+    
+</p>
 <!-- exercício 3 -->
 
 <!DOCTYPE html>
@@ -1760,6 +1775,48 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php .php -->
     <div>
         <?php
+            $frase = "Eu vou estudar php agora";
+            //        1  2   3       4   5
+            $count = str_word_count($frase, 0);
+            echo $count; // mostra 5
+            $frase = "Eu vou estudar php agora";
+            //        0  1   2       3   4
+            $count = str_word_count($frase, 1);
+            print_r ($count); // mostra o vetor array([0] => eu [1] => vou [2] => estudar [3] => php [4] => agora)
+            $frase = "Eu vou estudar php agora";
+            //        012345678901234567890123
+            $count = str_word_count($frase, 2);
+            print_r ($count); // mostra o vetor array([0] => eu [3] => vou [7] => estudar [15] => php [19] => agora)
+        ?>
+
+        <?php
+            $site = "Curso em video";
+            $vetor = explode(" ", $site);
+            print_r ($vetor); // mostra: array ([0] => curso [1] => em [2] => video) explode criou o vetor com cada palavra em um índice
+
+            $nome = "Maria";
+            $vetor = str_split ($nome);
+            print_r ($vetor); // mostra: array ([0] => M [1] => a [2] => r [3] => i [4] => a) criou um vetor com cada letra em um índice
+
+            $vetor[0] = "Curso";
+            $vetor[1] = "em";
+            $vetor[2] = "video";
+            $texto = implode("#", $vetor); //
+            $texto = join("#", $vetor); // funciona extamente igual ao implode
+            print($texto); // mostra: Curso#em#video
+            $texto = implode(" ", $vetor);
+            print($texto); // mostra: Curso em video. o que estiver entre aspas duplas será o caractere de separação
+        ?>
+
+
+
+        <?php
+            $letra = chr(67);
+            echo "a letra do código 67 é $letra"; // mostra a letra do código 67 é C
+
+            $letra = "C";
+            $cod = ord($letra);
+            echo "a letra C tem o código $cod"; // mostra: a letra C tem o código 67
         ?>
     </div>
     <!-- arquivo php .php -->
@@ -1768,14 +1825,21 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 </html>
 
 -----------------------
-<h1>aula 17. .</h1>
+<h1>aula 17. funções string em php parte 2.</h1>
 <p></p>
 <!-- exercício 1 -->
-<p></p>
+<p>a função strtolower transforma letras maiúsculas em minúsculas, ficando: $nome2 = strtolower($nome); onde $nome2 é onde será salvo a nova frase palavra ou string e $nome é a frase string palavra a ser modificada para letras minúsuclas. não altera as letras que já estão em minúsculas.</p>
+<p>a função strtoupper transforma letras minúsculas em maiúsculas, ficando: $nome2 = strtoupper($nome); onde $nome2 é onde será salvo a nova frase palavra ou string e $nome é a frase string palavra a ser modificada para letras maiúsculas. não altera as letras que já estão em maiúsculas.</p>
+<p>a função ucfirst upper case first primeira letra mainúscula, faz com que a primeira letra da frase seja colocada em maiúscula, ficando: $nome2 = ucfirst($nome); onde $nome é a string frase ou palavra a ser modificada e $nome2 é onde será salvo a string modificada. não modifica nenhuma outra letra da string, porém o strtolower ou strtoupper podem ser usados em conjunto.</p>
+<p>a função ucwords upper case words primeiras palavras mainúsculas, faz com que a primeira letra de cada palavra seja colocada em maiúscula, ficando: $nome2 = ucwords($nome); onde $nome é a string frase ou palavra a ser modificada e $nome2 é onde será salvo a string modificada. apenas a primeira letra de cada palavra será modificada, todas as outras não serão alteradas.</p>
+<p>a função strrev faz com que uma string seja mostrada com os caracteres em sequência inversa de tráz para frente, ficando: print (strrev($nome)); onde $nome é a string palavra frase a ser alterada.</p>
 <!-- exercício 2 -->
+
 <!-- exercício 2 -->
-<p></p>
+<p> a função strpos mostra em qual posição índice uma determinada parte dessa string se inicia contando a partir de zero 0 cada letra inclusive os espaços, ficando: $pos = strpos($frase, "php"); onde entre parênteses está a variável que se quer analisar e separado por vírgula e entre aspas duplas "" está trecho que quer encontrar na string da variável. essa função é keysensitive, diferencia letras maiúsculas de minúsculas.</p>
+<p> a função stripos mostra em qual posição índice uma determinada parte dessa string se inicia ignorando a diferenciação de de maiúsculas de minúsculas contando a partir de zero 0 cada letra inclusive os espaços, ficando: $pos = stripos($frase, "php"); onde entre parênteses está a variável que se quer analisar e separado por vírgula e entre aspas duplas "" está trecho que quer encontrar na string da variável.</p>
 <!-- exercício 2 -->
+
 <!-- exercício 3 -->
 <p></p>
 <!-- exercício 3 -->
@@ -1785,7 +1849,7 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 14</title>
+    <title>funções string em php parte 2. aula 17</title>
 </head>
 <body>
     <!-- exercício 1 -->
@@ -1796,6 +1860,32 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php -->
     <div>
         <?php
+            $nome = "Dener Nelson";
+            $nome2 = strtolower($nome);
+            echo "nome = $nome2"; // mostra: nome = dener nelson
+
+            $nome = "Dener Nelson";
+            $nome2 = strtoupper($nome);
+            echo "nome = $nome2"; // mostra: nome = DENER NELSON
+
+            $nome = "dener nelson";
+            $nome2 = ucfirst($nome);
+            echo "nome = $nome2"; // mostra: nome = Dener nelson
+
+            $nome = "deNer neLson";
+            $nome2 = ucfirst($nome);
+            echo "nome = $nome2"; // mostra: nome = DeNer neLson
+
+            $nome = "deNer neLson";
+            $nome2 = ucfirst(strtolower($nome));
+            echo "nome = $nome2"; // mostra: nome = Dener nelson
+
+            $nome = "deNer neLson";
+            $nome2 = ucwords($nome);
+            echo "nome = $nome2"; // mostra: nome = Dener Nelson
+       
+            $nome = "dener nelson";
+            print (strrev($nome)); // mostra: noslen rened
         ?>
     </div>
     <!-- arquivo php -->
@@ -1807,12 +1897,21 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <div>
     </div>
     <!-- arquivo html -->
-    <!-- arquivo php .php -->
+    <!-- arquivo php -->
     <div>
         <?php
+            $frase = "estou aprendendo php";
+            //índices 01234567890123456789
+            $pos = strpos($frase, "php");
+            echo "string encontrada na posição $pos". // mostra: string encontrada na posição 17
+
+            $frase = "estou aprendendo php";
+            //índices 01234567890123456789
+            $pos = stripos($frase, "Php");
+            echo "string encontrada na posição $pos". // mostra: string encontrada na posição 17
         ?>
     </div>
-    <!-- arquivo php .php -->
+    <!-- arquivo php -->
     <!-- exercício 2 -->
 
 
