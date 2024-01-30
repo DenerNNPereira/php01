@@ -1689,7 +1689,12 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     trim();
     ltrim();
     rtrim();
-    
+    str_word_count();
+    explode();
+    str_split();
+    implode();
+    chr();
+    ord();
 </p>
 <!-- exercício 3 -->
 
@@ -1838,10 +1843,14 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <!-- exercício 2 -->
 <p> a função strpos mostra em qual posição índice uma determinada parte dessa string se inicia contando a partir de zero 0 cada letra inclusive os espaços, ficando: $pos = strpos($frase, "php"); onde entre parênteses está a variável que se quer analisar e separado por vírgula e entre aspas duplas "" está trecho que quer encontrar na string da variável. essa função é keysensitive, diferencia letras maiúsculas de minúsculas.</p>
 <p> a função stripos mostra em qual posição índice uma determinada parte dessa string se inicia ignorando a diferenciação de de maiúsculas de minúsculas contando a partir de zero 0 cada letra inclusive os espaços, ficando: $pos = stripos($frase, "php"); onde entre parênteses está a variável que se quer analisar e separado por vírgula e entre aspas duplas "" está trecho que quer encontrar na string da variável.</p>
+<p>a função substr_count conta quantas vezes um caracter ou palavra apareceu em uma string, ficando: $cont = substr_count($frase, "PHP"); onde $cont é a variável onde irá salvar o valor a quantidade de repetições entradas, $frase é a variável onde se encontra a string a ser analizada e "PHP" é o que será procurado na string.</p>
 <!-- exercício 2 -->
 
 <!-- exercício 3 -->
-<p></p>
+<p>a função substr retira um trecho de uma string frase onde on índice inicia que em zero 0 e entre parênteses fica a variável onde está a string frase e separado por vírgula o primeiro número é o índice que que inicia a contagem e separado por outra vírgula está a o número da quantidade de índices a serem contados, ficando: $sub = $substr($site, 0, 5); onde $sub é a variável onde será salvo o trecho selecionado, $site é a variável onde se encontra a string a ser analisada e os números entre parênteses são, respectivamente, início da numeração dos índices e quantos índices serão retirados. caso seja passado apenas um número este indicará qual índice a partir de zero 0 até o final será mostrado separado. se um valor negativo for colocado entre parênteses será separado as últimas letras, de tráz para frente de acordo com o número digitado por quantidade e não por índice e se um segundo número positivo for adicionado após um vírgula será considerado o valor da quantidade indicada pelo número negativo porém será mostrada a quantidade indicada pelo número positivo seguinte, porém na ordem normal.</p>
+<p>a função str_pad adiciona caracteres em uma palavra, de acordo com os parâmetros selecionados entre parênteses, ficando: $novo = str_pad($nome, 30, " ", STR_PAD_RIGHT); onde $nome é a variável onde se encontra a string que receberá os caracteres adicionais, 30 que pode ser qualquer valor é a quantidade de caracteres que a nova string deve ter já somado os caracteres já existentes na string $nome, aqui " " é o caracter que será adicionado para completar a quantidade solicitada o qual entre aspas duplas é o caracter escolhido, STR_PAD_RIGTH é a posição que os caracteres adicionais serão inseridos neste caso a direita da string ou seja após o último caracter já na string $nome será adicionado, esta configuração também pode ser STR_PAD_CENTER que distribui a mesma quantidade de caracteres antes e depois da string e STR_PAD_LEFT que adiciona os carateceteres no início da string, antes do primeiro caracter.</p>
+<p>a função str_repeat repete uma deternimada string ou trecho dela quantas vezes for solicitada, ficando: $txt = str_repeat("PHP", 5); onde $txt é a variável que irá receber o texto gerado: entre aspas duplas "" está o trecho que será gerado repetido e enviado para a variável $txt: 5 é a quantidade de vezes que o trecho entre aspas duplas irá repetir na string.</p>
+<p>a função str_replace troca palavras selecionadas em uma string por novas palavras, ficando: $novafrase = str_replace("Matemarica", "PHP", $frase); onde $novafrase é a variável que receberá a string após a troca de palavras: a primeira palavra entre aspas duplas é palavra da frase original string $frase que será substituída: após a vírgula a segunda palavra entre aspas duplas é a palavra substituirá a palavra anterior na nova frase string $novafrase: $frase é a string original, onde a função str_replace irá procurar os termos entre a primeira aspas duplas para substituir. a função str_replace é keysensitive, difenrencia maiúsculas de minúsculas, para que essa diferença seja igniorada usar o i de ignore ignorar str_ireplace. caso o termo selecionado para ser substituído na primeira aspas duplas apareça mais de uma vez na string original, a nova string substiuirá todas as repetições desse termo na nova string.</p>
 <!-- exercício 3 -->
 
 <!DOCTYPE html>
@@ -1909,6 +1918,10 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
             //índices 01234567890123456789
             $pos = stripos($frase, "Php");
             echo "string encontrada na posição $pos". // mostra: string encontrada na posição 17
+
+            $frase = "Estou aprendendo PHP no curso e video de PHP";
+            $cont = substr_count($frase, "PHP");
+            print ("PHP encontrado $cont vezes"); // mostra: PHP encontrado 2 vezes
         ?>
     </div>
     <!-- arquivo php -->
@@ -1923,6 +1936,62 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php .php -->
     <div>
         <?php
+            $site = "Curso em video";
+            //       12345678901234
+            $sub = substr($site, 0, 5);
+            echo "$sub "; // mostra: Curso
+
+            $site = "Curso em video";
+            //       012345678901234
+            $sub = substr($site, 6);
+            echo "$sub "; // mostra: em video
+
+            $site = "Curso em video";
+            //       43210987654321
+            $sub = substr($site, -5);
+            echo "$sub "; // mostra: video
+
+            $site = "Curso em video";
+            //       43210987654321
+            //                12
+            $sub = substr($site, -5, 2);
+            echo "$sub "; // mostra: vi
+        ?>
+        <?php
+            $nome = "Dener";
+            $novo = str_pad($nome, 30, " ", STR_PAD_RIGHT);
+            print ("O $novo é puro músculo"); // mostra: O Dener        é puro músculo! espaços depois
+
+            $nome = "Dener";
+            $novo = str_pad($nome, 30, " ", STR_PAD_CENTER);
+            print ("O $novo é puro músculo"); // mostra: O     Dener      é puro músculo! espaços antes e depois
+
+            $nome = "Dener";
+            $novo = str_pad($nome, 30, " ", STR_PAD_LEFT);
+            print ("O $novo é puro músculo"); // mostra: O        Dener é puro músculo! espaços antes
+        ?>
+
+        <?php
+            $txt = str_repeat("PHP", 5);
+            print ("O texto gerado foi $txt"); // mostra: O texto gerado foi PHPPHPPHPPHPPHP
+            print (str_repeat("-", 20)); // mostra: ---------------------
+
+            
+            $frase = "Gosto de estudar Matemática";
+            $novafrase = str_replace("Matemática", "PHP", $frase);
+            echo "$novafrase"; // mostra: Gosto de estudar PHP
+
+            $frase = "Gosto de estudar Matemática";
+            $novafrase = str_replace("matemática", "PHP", $frase);
+            echo "$novafrase"; // mostra: Gosto de estudar Matemática
+
+            $frase = "Gosto de estudar Matemática";
+            $novafrase = str_ireplace("Matemática", "PHP", $frase);
+            echo "$novafrase"; // mostra: Gosto de estudar PHP
+
+            $frase = "Gosto de estudar Matemática! Matemática é legal";
+            $novafrase = str_ireplace("matemática", "PHP", $frase);
+            echo "$novafrase"; // mostra: Gosto de estudar PHP! PHP é legal
         ?>
     </div>
     <!-- arquivo php .php -->
@@ -1931,7 +2000,7 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 </html>
 
 -----------------------
-<h1>aula 18. .</h1>
+<h1>aula 18. vetores e matrizes parte 1.</h1>
 <p></p>
 <!-- exercício 1 -->
 <p></p>
@@ -1948,7 +2017,7 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 14</title>
+    <title>vetores e matrizes parte 1. aula 18</title>
 </head>
 <body>
     <!-- exercício 1 -->
