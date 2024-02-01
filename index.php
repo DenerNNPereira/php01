@@ -2001,13 +2001,24 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 
 -----------------------
 <h1>aula 18. vetores e matrizes parte 1.</h1>
-<p></p>
+<p>variáveis compostas. em php a criação ce um vetor não é declarada, não tem como declarar o tamanho de um vetor, pois no php é dinâmico, a medida que se atribui um valor a uma posição um índice desse vetor o tamanho do vetor aumenta e é feita a alocação de memória para isso. um vetor é criado direcionando um valor ao índice quando após o nome da variável que recebe esse vetor está entre colchetes [] o número do índice, ficando: $n[0] = 3; $n[1] = 5; $n[2] = 8; $n[3] = 2; ou $n = array(3,5,8,2); onde array é uma palavra chave que indica ao php a criação de um vetor onde na mesma ordem que tem valores entre chaves eles serão adicionados aos índices do vetor. ao se adicionar uma nova posição é automaticamente criada na memória. para se adicionar mais um valor em um array vetor basta indicar o nome do array sequido de colchetes vazio que receberá o valor, ficando: $n[] = 7; que será adicionado ao array vetor $n.</p>
+<p>a tag pre modifica a formatação da apresentação no site, tudo que está entre as tags pre e barrapre /pre será ajustado para melhor visualização.</p>
 <!-- exercício 1 -->
-<p></p>
+<p>a palavra array pode ser substituída pela palavra range, porém a criação do vetor array depende dos valores entre parênteses, ficando: $n = range(5, 20, 2); onde $n é a variável que recebe o array; os números entre parênteses separados por vírgula são: o primeiro número 5 representa o início do índice 0 o valor que o índice zero 0 receberá; o segundo valor 20 é o valor máximo que o índice receberá; e o último valor é qual intervalo para chegar ao último valor, no caso 5 será contado de 5 em 5 até 20.</p>
+<p>usando a estrutura de repetição foreach para cada a visualização do array pode ser melhorada, ficando: foreach ($c as $v) {echo "$v";} onde foreach para cada (elemento em $c as tratado como um valor $v) {mostre echo cada valor de $v echo "$v";}</p>
+<p>chaves personalizadas. pode criar um vetor informando qual índice será usado para associar algum valor usando o símbolo de associação => em conjunto com o termo array, ficando: $v = array(1 => "A", 3 => "B", 6 => "C", 8 => "D"); onde o índice indicado antes do símbolo de associação => recebe o valor indicado após o símbolo de associação. caso um vetor criado dessa forma receba mais um valor em algum índice usando $v[] = "E"; o número do índice será de acordo com o último índice criado, neste caso é 8, portanto o novo índice será 9.</p>
+<p>para apagar o valor de um índice e o índice a função unset seguida do nome do vetor e a posição do índice entre colchetes e ambos entre parênteses, ficando: unset($v[9]); neste caso excluirá o valor e o índice que está na posição 9. não precisa ser na última posição, pode ser em qualquer posição de índice.</p>
+<!-- exercício 1 -->
+
 <!-- exercício 2 -->
+<p>chaves associativas. os índices podem ser string, texto, e no php um array pode receber vários tipos de valores inteiro, float, string e booleano. após a criação da variável que receberá o array $cad = array entre parêntes adicionar os índices e valores, "nome" => "Ana", separados por vírgula e usando o símbolo de associação => para o índice e o valor, ficando: $cad = array("nome" => "Ana", "idade" => 23, "peso" => 78.5); onde apenas os textos caracteres de letras ficam entre aspas duplas, valores números não ficam entre aspas duplas.</p>
+<p>a associação declaração de um novo índice pode ser feita usando as mesma técnica anterior, porém pode ser colocado entre colchetes o valor do índice, ficando: $cad["fuma"] = true; onde true é um valor booleano para sim e não e é o valor que será adicionado, e "fuma" o nome do novo índice; e $cad é o vetor que receberá o novo índice.</p>
+<p>a estrutura foreach pode ser usada nesse caso, ficando: foreach ($v as $k => $c) {echo "O campo $k possui o conteúdo $c}; onde foreach para cada elemento na variável $v onde a chave $k associado => ao conteúdo $c mostre echo.</p>
+<p>no php não existe matriz, mas pode usar vetores dentro de vetores que são variáveis compostas multidimensionais. matriz em php funciona como vetores dentro de vetores, ficando: $n = array(array(2,3),array(3,4),array(9,5)); onde o primeiro par de parênteses indica um array e cada para de parênteses antecedido pelo termo array indica outro array vetor, porém se estiver dentro do primeiro par de parênteses será um array dentro de outro array.</p>
+<p>para referenciar um elemento dentro matriz basta referenciar elementos específicos, ficando: $n[2][0] = $n[1][1]; onde $n[2][0] é a posição dentro da matriz o qual [2] é linha 2 contando inicialmente de 0 e [0] é a coluna contando inicialmente de zero no exemplo está referenciando o número 9; e $n[1][1] o primeiro [1] referencia a linha e coluna 1 contando inicialmente de zero 0, indicando o número 4, nessa sintaxe o número 9 será substituído pelo conteúdo da linha 1 coluna 1 que é 4.</p>
+<p>uma matriz ou vetor dentro de vetor pode sr resumido como um array onde os elementos desse array são outros arrays.</p>
 <!-- exercício 2 -->
-<p></p>
-<!-- exercício 2 -->
+
 <!-- exercício 3 -->
 <p></p>
 <!-- exercício 3 -->
@@ -2028,6 +2039,30 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php -->
     <div>
         <?php
+            <pre>
+                $n = array(3, 5, 8, 2);
+                print_r ($n); // mostra: array ([0] => 3 [1] => 5 [2] => 8 [3] => 2)
+                $n[] = 7; // adiciona um índice com valor 7
+                print_r ($n); // mostra: array ([0] => 3 [1] => 5 [2] => 8 [3] => 2 [4] => 7)
+
+                $c = range(5, 20, 2); // de 5 até 20 de 2 em 2
+                print_r($c); // mostra: array ([0] => 5 [1] => 7 [2] => 9 [3] => 11 [4] => 13 [4] => 15 [4] => 17 [4] => 19)
+                // ou
+                foreach ($c as $v) {
+                    echo "$v"; // mostra: 5 7 9 11 13 15 17 19
+                }
+
+                $v = array( 1 => "A",
+                            3 => "B",
+                            6 => "C",
+                            8 => "D");
+                print_r($v); // mostra: array( 1 => "A", 3 => "B", 6 => "C", 8 => "D")
+                $v[] = "E";
+                print_r($v); // mostra: array( 1 => "A", 3 => "B", 6 => "C", 8 => "D", 9 => "E")
+
+                unset($v[9]);
+                print_r($v); // mostra: array( 1 => "A", 3 => "B", 6 => "C", 8 => "D")
+            </pre>
         ?>
     </div>
     <!-- arquivo php -->
@@ -2042,6 +2077,22 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php .php -->
     <div>
         <?php
+            <pre>
+                $cad = array("nome" => "Ana", "idade" => 23, "peso" => 65.5);
+                print_r($cad); // mostra: array([nome] => Ana [idade] => 23 [peso] => 65.5)
+
+                $cad["fuma"] = true;
+                print_r($cad); // mostra: array([nome] => Ana [idade] => 23 [peso] => 65.5 [fuma] => true)
+
+                foreach ($cad as $k => $c) {
+                    echo "O campo $k possui o conteúdo $c <br>";
+                }
+                // mostra:
+                // O campo nome possui o conteúdo Ana
+                // O campo idade possui o conteúdo 23
+                // O campo peso possui o conteúdo 65.5
+                // O campo fuma possui o conteúdo true
+            </pre>
         ?>
     </div>
     <!-- arquivo php .php -->
@@ -2056,6 +2107,18 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php .php -->
     <div>
         <?php
+            $n = array(
+                array(2, 3),
+                array(3, 4),
+                array(9, 5)
+            );
+
+            $n[2][0] = $n[1][1]; // onde: $n[2][0] é o 9 e $n[1][1] é 4
+            $n = array( // resultado da matriz após o comando acima
+                array(2, 3),
+                array(3, 4),
+                array(4, 5)
+            );
         ?>
     </div>
     <!-- arquivo php .php -->
@@ -2064,7 +2127,7 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 </html>
 
 -----------------------
-<h1>aula 19. .</h1>
+<h1>aula 19. vetores e matrizes parte 2.</h1>
 <p></p>
 <!-- exercício 1 -->
 <p></p>
@@ -2081,7 +2144,7 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>. aula 14</title>
+    <title>vetores e matrizes parte 2. aula 19</title>
 </head>
 <body>
     <!-- exercício 1 -->
