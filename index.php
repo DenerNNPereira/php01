@@ -2130,11 +2130,29 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
 <h1>aula 19. vetores e matrizes parte 2.</h1>
 <p></p>
 <!-- exercício 1 -->
-<p></p>
+<p>a função var_dump() funciona da mesma forma que a função print_r() porém indica a quantidade e o tipo da cada elemento dentro do array que estiver entre parênteses ao usar a função.</p>
+<p>a função count() conta quantos elementos tem dentro de um array e essa contagem pode ser guardada em uma variável usando a atribuição = igual.</p>
+<p>a função array_push() adiciona um elemento ao final do array, ficando: array_push($n, 5); onde entre parênteses está a variável que guarda o array e após a vírgula o valor a ser adicionado nesssa variável, o valor será sempre adicionado após o último índice já existente adicinando mais um índice para acomodar o valor. específica para tratamento do último elemento de um vetor.</p>
+<p>a função array_pop() funciona da mesma forma lógica que push porém excluído o último elemento e seu índice. funciona da mesma forma que unset.</p>
+<p>a função array_unshift() adiciona um elemento no início do array, ficando: array_push($n, 9); onde entre parênteses está a variável que guarda o array e após a vírgula o valor a ser adicionado nesssa variável, o valor será sempre adicionado na posição zero 0 realocando os valores que já estão para os índices seguintes.</p>
+<p>a função array_shift() funciona da mesma forma lógica que unshift porém excluído o primeiro elemento e seu índice e realocando que já estão para os índices anteriores atualizados.</p>
+<p>funções:
+    array_push() adiciona um elemento no final do array;
+    array_pop() elimina um elemento do final do array;
+    array_unshift() adiciona um elemento no início do array;
+    array_shift() elimina um elemento do início do array
+</p>
+<p>a função sort() faz com que os elementos de um índice fiquem em ordem crescente, independente de letras ou números, ficando: sort($n); onde entre parêntese ficará a variável que guarda o vetor array.</p>
+<p>a função rsort() faz com que os elementos de um índice fiquem em ordem decrescente, independente de letras ou números, ficando: rsort($n); onde entre parêntese ficará a variável que guarda o vetor array. o r da função significa reverse reverso.</p>
+<!-- exercício 1 -->
+
 <!-- exercício 2 -->
+<p>ordenação associativa. usando a função asort() a de associativa, os valores do array serão colocados em ordem crescente porém não será alterado os índices a que cada valor pertence.</p>
+<p>ordenação associativa reversa. usando a função arsort() a de associativa r de reverse, os valores do array serão colocados em ordem decrescente porém não será alterado os índices a que cada valor pertence.</p>
+<p>ordenação por chaves. a função ksort() ondena os índices em ordem crescente, porém ignorando os valores. a ordem de ordenação é definida pelo índice.</p>
+<p>ordenação reversa por chaves. a função krsort() ondena os índices em ordem decrescente, porém ignorando os valores. a ordem de ordenação é definida pelo índice.</p>
 <!-- exercício 2 -->
-<p></p>
-<!-- exercício 2 -->
+
 <!-- exercício 3 -->
 <p></p>
 <!-- exercício 3 -->
@@ -2155,6 +2173,46 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php -->
     <div>
         <?php
+            <pre>
+                $n = array("A", "J", "M", "X", "K");
+                array_push($n, "O"); // adiciona um elemento no final do array
+                array_pop($n); // elimina um elemento do final do array
+                array_unshift($n, "O"); // adiciona um elemento no início do array
+                array_shift($n); // elimina um elemento do início do array
+
+                sort($n); // coloca os elementos em ordem crescente
+                rsort($n); // coloca os elementos em ordem decrescente
+
+                $v = array(2 => "A", 5 => "J", 0 => "M", 3 => "X", 4 => "K");
+                print_r($v); // mostra:
+                // array (
+                //     [2] => A
+                //     [5] => J
+                //     [0] => M
+                //     [3] => X
+                //     [4] => K
+                // )
+
+                ksort($v); // coloca os índices em ordem crescente endependente dos valores          
+                print_r($v); // mostra:
+                // array (
+                //     [0] => M
+                //     [2] => A
+                //     [3] => X
+                //     [4] => K
+                //     [5] => J
+                // )
+
+                krsort($v); // coloca os índices em ordem crescente endependente dos valores          
+                print_r($v); // mostra:
+                // array (
+                //     [5] => J
+                //     [4] => K
+                //     [3] => X
+                //     [2] => A
+                //     [0] => M
+                // )
+            </pre>
         ?>
     </div>
     <!-- arquivo php -->
@@ -2169,6 +2227,17 @@ Na aula 17 do curso, veremos mais funções para manipulação de Strings.</p>
     <!-- arquivo php .php -->
     <div>
         <?php
+            <pre>
+                $n = array(3, 5, 8, 2);
+                //         0  1  2  3
+                asort($n); // coloca os elementos em ordem crescente alterando os índices
+                $n = array(2, 3, 5, 8); // resultado do asort
+                //         3  0  1  2
+
+                arsort($n); // coloca os elementos em ordem crescente alterando os índices
+                $n = array(8, 5, 3, 2); // resultado do arsort
+                //         2  1  0  3
+            </pre>
         ?>
     </div>
     <!-- arquivo php .php -->
